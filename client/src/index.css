@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer base {
+  :root {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 95%;
+    --card: 222 47% 9%;
+    --card-foreground: 210 40% 95%;
+    --muted: 222 47% 14%;
+    --muted-foreground: 215 20% 55%;
+    --accent: 217 91% 60%;
+    --accent-foreground: 222 47% 6%;
+    --border: 222 30% 16%;
+    --input: 222 47% 12%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 6%;
+    --radius: 0.5rem;
+  }
+}
+ 
+@layer base {
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground antialiased; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: hsl(var(--muted)); }
+  ::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 3px; }
+}
+ 
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+ 
+.prose-dark h2 { @apply text-lg font-semibold text-foreground mt-4 mb-2; }
+.prose-dark h3 { @apply text-base font-medium text-foreground mt-3 mb-1; }
+.prose-dark p { @apply text-sm text-muted-foreground leading-relaxed mb-2; }
+.prose-dark ul { @apply list-disc list-inside text-sm text-muted-foreground space-y-1 mb-2; }
+.prose-dark strong { @apply text-foreground font-semibold; }
+.prose-dark table { @apply w-full text-sm border-collapse mb-3; }
+.prose-dark th { @apply text-left text-xs font-medium text-muted-foreground pb-1 border-b border-border; }
+.prose-dark td { @apply py-1 pr-4 text-sm text-foreground border-b border-border/50; }
