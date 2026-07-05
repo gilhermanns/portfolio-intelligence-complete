@@ -1,0 +1,812 @@
+[
+  {
+    "seed": 100,
+    "strategy": "aggressive",
+    "entry_time": 150.0,
+    "arrival_mid": 99.89500000000001,
+    "vwap": 99.99247820505613,
+    "filled_qty": 60.0,
+    "shortfall_bps": 9.758066475411207
+  },
+  {
+    "seed": 100,
+    "strategy": "twap",
+    "entry_time": 150.0,
+    "arrival_mid": 99.89500000000001,
+    "vwap": 100.03072143323365,
+    "filled_qty": 60.0,
+    "shortfall_bps": 13.586409052869627
+  },
+  {
+    "seed": 100,
+    "strategy": "aggressive",
+    "entry_time": 400.0,
+    "arrival_mid": 100.03,
+    "vwap": 100.10499999999999,
+    "filled_qty": 60.00000000000001,
+    "shortfall_bps": 7.497750674796424
+  },
+  {
+    "seed": 100,
+    "strategy": "twap",
+    "entry_time": 400.0,
+    "arrival_mid": 100.03,
+    "vwap": 100.08069346849827,
+    "filled_qty": 60.0,
+    "shortfall_bps": 5.06782650187611
+  },
+  {
+    "seed": 100,
+    "strategy": "aggressive",
+    "entry_time": 650.0,
+    "arrival_mid": 100.05,
+    "vwap": 100.119304096711,
+    "filled_qty": 60.00000000000002,
+    "shortfall_bps": 6.926946198001789
+  },
+  {
+    "seed": 100,
+    "strategy": "twap",
+    "entry_time": 650.0,
+    "arrival_mid": 100.05,
+    "vwap": 100.07557446267393,
+    "filled_qty": 60.0,
+    "shortfall_bps": 2.5561681833013536
+  },
+  {
+    "seed": 101,
+    "strategy": "aggressive",
+    "entry_time": 150.0,
+    "arrival_mid": 100.13,
+    "vwap": 100.27061301828162,
+    "filled_qty": 59.99999999999999,
+    "shortfall_bps": 14.043045868533605
+  },
+  {
+    "seed": 101,
+    "strategy": "twap",
+    "entry_time": 150.0,
+    "arrival_mid": 100.13,
+    "vwap": 100.1359381934897,
+    "filled_qty": 60.0,
+    "shortfall_bps": 0.5930483860678715
+  },
+  {
+    "seed": 101,
+    "strategy": "aggressive",
+    "entry_time": 400.0,
+    "arrival_mid": 99.9,
+    "vwap": 100.02810319818687,
+    "filled_qty": 59.99999999999999,
+    "shortfall_bps": 12.823142961648013
+  },
+  {
+    "seed": 101,
+    "strategy": "twap",
+    "entry_time": 400.0,
+    "arrival_mid": 99.9,
+    "vwap": 99.99324657092107,
+    "filled_qty": 60.0,
+    "shortfall_bps": 9.333991083189936
+  },
+  {
+    "seed": 101,
+    "strategy": "aggressive",
+    "entry_time": 650.0,
+    "arrival_mid": 100.00999999999999,
+    "vwap": 100.05000000000001,
+    "filled_qty": 60.0,
+    "shortfall_bps": 3.999600039998047
+  },
+  {
+    "seed": 101,
+    "strategy": "twap",
+    "entry_time": 650.0,
+    "arrival_mid": 100.00999999999999,
+    "vwap": 100.03809661391897,
+    "filled_qty": 60.0,
+    "shortfall_bps": 2.8093804538521927
+  },
+  {
+    "seed": 102,
+    "strategy": "aggressive",
+    "entry_time": 150.0,
+    "arrival_mid": 100.21000000000001,
+    "vwap": 100.31401635481578,
+    "filled_qty": 60.0,
+    "shortfall_bps": 10.379837822150416
+  },
+  {
+    "seed": 102,
+    "strategy": "twap",
+    "entry_time": 150.0,
+    "arrival_mid": 100.21000000000001,
+    "vwap": 100.32835583370115,
+    "filled_qty": 59.99999999999999,
+    "shortfall_bps": 11.810780730580259
+  },
+  {
+    "seed": 102,
+    "strategy": "aggressive",
+    "entry_time": 400.0,
+    "arrival_mid": 100.135,
+    "vwap": 100.23404378975889,
+    "filled_qty": 60.0,
+    "shortfall_bps": 9.891026090665651
+  },
+  {
+    "seed": 102,
+    "strategy": "twap",
+    "entry_time": 400.0,
+    "arrival_mid": 100.135,
+    "vwap": 100.22151927331181,
+    "filled_qty": 60.0,
+    "shortfall_bps": 8.640262976162965
+  },
+  {
+    "seed": 102,
+    "strategy": "aggressive",
+    "entry_time": 650.0,
+    "arrival_mid": 100.185,
+    "vwap": 100.29220601850398,
+    "filled_qty": 59.99999999999999,
+    "shortfall_bps": 10.700805360480427
+  },
+  {
+    "seed": 102,
+    "strategy": "twap",
+    "entry_time": 650.0,
+    "arrival_mid": 100.185,
+    "vwap": 100.27752141516754,
+    "filled_qty": 60.00000000000001,
+    "shortfall_bps": 9.23505666192934
+  },
+  {
+    "seed": 103,
+    "strategy": "aggressive",
+    "entry_time": 150.0,
+    "arrival_mid": 99.86,
+    "vwap": 99.93891511238978,
+    "filled_qty": 60.0,
+    "shortfall_bps": 7.902574843759218
+  },
+  {
+    "seed": 103,
+    "strategy": "twap",
+    "entry_time": 150.0,
+    "arrival_mid": 99.86,
+    "vwap": 99.91782298646338,
+    "filled_qty": 60.0,
+    "shortfall_bps": 5.7904052136369275
+  },
+  {
+    "seed": 103,
+    "strategy": "aggressive",
+    "entry_time": 400.0,
+    "arrival_mid": 99.58500000000001,
+    "vwap": 99.67454316272241,
+    "filled_qty": 60.0,
+    "shortfall_bps": 8.991631543144752
+  },
+  {
+    "seed": 103,
+    "strategy": "twap",
+    "entry_time": 400.0,
+    "arrival_mid": 99.58500000000001,
+    "vwap": 99.69084008103542,
+    "filled_qty": 60.00000000000001,
+    "shortfall_bps": 10.6281147798775
+  },
+  {
+    "seed": 103,
+    "strategy": "aggressive",
+    "entry_time": 650.0,
+    "arrival_mid": 99.66999999999999,
+    "vwap": 99.74335324362643,
+    "filled_qty": 60.00000000000001,
+    "shortfall_bps": 7.359611079205637
+  },
+  {
+    "seed": 103,
+    "strategy": "twap",
+    "entry_time": 650.0,
+    "arrival_mid": 99.66999999999999,
+    "vwap": 99.72722761305177,
+    "filled_qty": 60.0,
+    "shortfall_bps": 5.741708944695421
+  },
+  {
+    "seed": 104,
+    "strategy": "aggressive",
+    "entry_time": 150.0,
+    "arrival_mid": 99.995,
+    "vwap": 100.06883054581712,
+    "filled_qty": 60.0,
+    "shortfall_bps": 7.3834237528993345
+  },
+  {
+    "seed": 104,
+    "strategy": "twap",
+    "entry_time": 150.0,
+    "arrival_mid": 99.995,
+    "vwap": 100.11109485923745,
+    "filled_qty": 60.0,
+    "shortfall_bps": 11.610066427066307
+  },
+  {
+    "seed": 104,
+    "strategy": "aggressive",
+    "entry_time": 400.0,
+    "arrival_mid": 100.09,
+    "vwap": 100.15852468541809,
+    "filled_qty": 60.00000000000001,
+    "shortfall_bps": 6.846306865629254
+  },
+  {
+    "seed": 104,
+    "strategy": "twap",
+    "entry_time": 400.0,
+    "arrival_mid": 100.09,
+    "vwap": 100.156581061833,
+    "filled_qty": 60.0,
+    "shortfall_bps": 6.652119275950784
+  },
+  {
+    "seed": 104,
+    "strategy": "aggressive",
+    "entry_time": 650.0,
+    "arrival_mid": 100.03999999999999,
+    "vwap": 100.09137124211584,
+    "filled_qty": 60.000000000000014,
+    "shortfall_bps": 5.135070183511472
+  },
+  {
+    "seed": 104,
+    "strategy": "twap",
+    "entry_time": 650.0,
+    "arrival_mid": 100.03999999999999,
+    "vwap": 100.08615120912937,
+    "filled_qty": 60.0,
+    "shortfall_bps": 4.6132756026966195
+  },
+  {
+    "seed": 105,
+    "strategy": "aggressive",
+    "entry_time": 150.0,
+    "arrival_mid": 99.98,
+    "vwap": 100.07618382083896,
+    "filled_qty": 60.000000000000014,
+    "shortfall_bps": 9.620306145124962
+  },
+  {
+    "seed": 105,
+    "strategy": "twap",
+    "entry_time": 150.0,
+    "arrival_mid": 99.98,
+    "vwap": 100.01853678859301,
+    "filled_qty": 59.99999999999999,
+    "shortfall_bps": 3.8544497492505077
+  },
+  {
+    "seed": 105,
+    "strategy": "aggressive",
+    "entry_time": 400.0,
+    "arrival_mid": 99.54499999999999,
+    "vwap": 99.6697042497925,
+    "filled_qty": 59.99999999999999,
+    "shortfall_bps": 12.527424761918235
+  },
+  {
+    "seed": 105,
+    "strategy": "twap",
+    "entry_time": 400.0,
+    "arrival_mid": 99.54499999999999,
+    "vwap": 99.64115188563851,
+    "filled_qty": 60.0,
+    "shortfall_bps": 9.659137640114494
+  },
+  {
+    "seed": 105,
+    "strategy": "aggressive",
+    "entry_time": 650.0,
+    "arrival_mid": 99.51,
+    "vwap": 99.59422599532043,
+    "filled_qty": 60.0,
+    "shortfall_bps": 8.464073492153894
+  },
+  {
+    "seed": 105,
+    "strategy": "twap",
+    "entry_time": 650.0,
+    "arrival_mid": 99.51,
+    "vwap": 99.5472624423394,
+    "filled_qty": 60.0,
+    "shortfall_bps": 3.7445927383576763
+  },
+  {
+    "seed": 106,
+    "strategy": "aggressive",
+    "entry_time": 150.0,
+    "arrival_mid": 100.22,
+    "vwap": 100.30558390419507,
+    "filled_qty": 60.00000000000001,
+    "shortfall_bps": 8.539603292264607
+  },
+  {
+    "seed": 106,
+    "strategy": "twap",
+    "entry_time": 150.0,
+    "arrival_mid": 100.22,
+    "vwap": 100.251151372915,
+    "filled_qty": 60.0,
+    "shortfall_bps": 3.108299033626524
+  },
+  {
+    "seed": 106,
+    "strategy": "aggressive",
+    "entry_time": 400.0,
+    "arrival_mid": 100.13,
+    "vwap": 100.24146078453973,
+    "filled_qty": 60.0,
+    "shortfall_bps": 11.1316073643993
+  },
+  {
+    "seed": 106,
+    "strategy": "twap",
+    "entry_time": 400.0,
+    "arrival_mid": 100.13,
+    "vwap": 100.15760538205198,
+    "filled_qty": 60.0,
+    "shortfall_bps": 2.7569541647845504
+  },
+  {
+    "seed": 106,
+    "strategy": "aggressive",
+    "entry_time": 650.0,
+    "arrival_mid": 100.215,
+    "vwap": 100.24596619219285,
+    "filled_qty": 60.0,
+    "shortfall_bps": 3.089975771376487
+  },
+  {
+    "seed": 106,
+    "strategy": "twap",
+    "entry_time": 650.0,
+    "arrival_mid": 100.215,
+    "vwap": 100.23796947450882,
+    "filled_qty": 60.0,
+    "shortfall_bps": 2.292019608722495
+  },
+  {
+    "seed": 107,
+    "strategy": "aggressive",
+    "entry_time": 150.0,
+    "arrival_mid": 100.02,
+    "vwap": 100.11490890817095,
+    "filled_qty": 60.0,
+    "shortfall_bps": 9.488993018491323
+  },
+  {
+    "seed": 107,
+    "strategy": "twap",
+    "entry_time": 150.0,
+    "arrival_mid": 100.02,
+    "vwap": 100.09991670172755,
+    "filled_qty": 60.00000000000001,
+    "shortfall_bps": 7.990072158323841
+  },
+  {
+    "seed": 107,
+    "strategy": "aggressive",
+    "entry_time": 400.0,
+    "arrival_mid": 100.155,
+    "vwap": 100.20104438107364,
+    "filled_qty": 60.00000000000001,
+    "shortfall_bps": 4.597312273340539
+  },
+  {
+    "seed": 107,
+    "strategy": "twap",
+    "entry_time": 400.0,
+    "arrival_mid": 100.155,
+    "vwap": 100.2028823948894,
+    "filled_qty": 60.0,
+    "shortfall_bps": 4.780829203674199
+  },
+  {
+    "seed": 107,
+    "strategy": "aggressive",
+    "entry_time": 650.0,
+    "arrival_mid": 100.16,
+    "vwap": 100.24899556222593,
+    "filled_qty": 60.0,
+    "shortfall_bps": 8.885339679106648
+  },
+  {
+    "seed": 107,
+    "strategy": "twap",
+    "entry_time": 650.0,
+    "arrival_mid": 100.16,
+    "vwap": 100.24180095693737,
+    "filled_qty": 59.99999999999999,
+    "shortfall_bps": 8.167028448219993
+  },
+  {
+    "seed": 108,
+    "strategy": "aggressive",
+    "entry_time": 150.0,
+    "arrival_mid": 100.10499999999999,
+    "vwap": 100.18389476181677,
+    "filled_qty": 60.0,
+    "shortfall_bps": 7.881200920711643
+  },
+  {
+    "seed": 108,
+    "strategy": "twap",
+    "entry_time": 150.0,
+    "arrival_mid": 100.10499999999999,
+    "vwap": 100.1918724361609,
+    "filled_qty": 60.00000000000001,
+    "shortfall_bps": 8.678131577934847
+  },
+  {
+    "seed": 108,
+    "strategy": "aggressive",
+    "entry_time": 400.0,
+    "arrival_mid": 100.05,
+    "vwap": 100.16678825056619,
+    "filled_qty": 60.00000000000001,
+    "shortfall_bps": 11.672988562337622
+  },
+  {
+    "seed": 108,
+    "strategy": "twap",
+    "entry_time": 400.0,
+    "arrival_mid": 100.05,
+    "vwap": 100.15739715412566,
+    "filled_qty": 59.99999999999999,
+    "shortfall_bps": 10.734348238447174
+  },
+  {
+    "seed": 108,
+    "strategy": "aggressive",
+    "entry_time": 650.0,
+    "arrival_mid": 100.2,
+    "vwap": 100.23,
+    "filled_qty": 60.0,
+    "shortfall_bps": 2.9940119760480175
+  },
+  {
+    "seed": 108,
+    "strategy": "twap",
+    "entry_time": 650.0,
+    "arrival_mid": 100.2,
+    "vwap": 100.22466666666666,
+    "filled_qty": 60.0,
+    "shortfall_bps": 2.4617431803055174
+  },
+  {
+    "seed": 109,
+    "strategy": "aggressive",
+    "entry_time": 150.0,
+    "arrival_mid": 99.965,
+    "vwap": 100.01305854056268,
+    "filled_qty": 60.0,
+    "shortfall_bps": 4.807536694110772
+  },
+  {
+    "seed": 109,
+    "strategy": "twap",
+    "entry_time": 150.0,
+    "arrival_mid": 99.965,
+    "vwap": 100.01517476932644,
+    "filled_qty": 59.99999999999999,
+    "shortfall_bps": 5.019233664425754
+  },
+  {
+    "seed": 109,
+    "strategy": "aggressive",
+    "entry_time": 400.0,
+    "arrival_mid": 99.73,
+    "vwap": 99.8310554284366,
+    "filled_qty": 60.000000000000014,
+    "shortfall_bps": 10.132901678190636
+  },
+  {
+    "seed": 109,
+    "strategy": "twap",
+    "entry_time": 400.0,
+    "arrival_mid": 99.73,
+    "vwap": 99.82628914286052,
+    "filled_qty": 60.0,
+    "shortfall_bps": 9.654982739447835
+  },
+  {
+    "seed": 109,
+    "strategy": "aggressive",
+    "entry_time": 650.0,
+    "arrival_mid": 99.73,
+    "vwap": 99.83956082566812,
+    "filled_qty": 60.0,
+    "shortfall_bps": 10.985744075815878
+  },
+  {
+    "seed": 109,
+    "strategy": "twap",
+    "entry_time": 650.0,
+    "arrival_mid": 99.73,
+    "vwap": 99.76303705287566,
+    "filled_qty": 59.99999999999999,
+    "shortfall_bps": 3.3126494410564584
+  },
+  {
+    "seed": 110,
+    "strategy": "aggressive",
+    "entry_time": 150.0,
+    "arrival_mid": 99.95500000000001,
+    "vwap": 100.04417377208341,
+    "filled_qty": 60.0,
+    "shortfall_bps": 8.921391834665469
+  },
+  {
+    "seed": 110,
+    "strategy": "twap",
+    "entry_time": 150.0,
+    "arrival_mid": 99.95500000000001,
+    "vwap": 99.99716964888745,
+    "filled_qty": 59.99999999999999,
+    "shortfall_bps": 4.218863377263514
+  },
+  {
+    "seed": 110,
+    "strategy": "aggressive",
+    "entry_time": 400.0,
+    "arrival_mid": 99.95,
+    "vwap": 100.00573928751095,
+    "filled_qty": 59.999999999999986,
+    "shortfall_bps": 5.576717109649395
+  },
+  {
+    "seed": 110,
+    "strategy": "twap",
+    "entry_time": 400.0,
+    "arrival_mid": 99.95,
+    "vwap": 100.00076845115446,
+    "filled_qty": 60.0,
+    "shortfall_bps": 5.079384807849318
+  },
+  {
+    "seed": 110,
+    "strategy": "aggressive",
+    "entry_time": 650.0,
+    "arrival_mid": 99.975,
+    "vwap": 100.01045973490616,
+    "filled_qty": 60.0,
+    "shortfall_bps": 3.546860205668333
+  },
+  {
+    "seed": 110,
+    "strategy": "twap",
+    "entry_time": 650.0,
+    "arrival_mid": 99.975,
+    "vwap": 100.0089183794939,
+    "filled_qty": 60.0,
+    "shortfall_bps": 3.3926861209214048
+  },
+  {
+    "seed": 111,
+    "strategy": "aggressive",
+    "entry_time": 150.0,
+    "arrival_mid": 99.965,
+    "vwap": 100.03233871317346,
+    "filled_qty": 60.00000000000001,
+    "shortfall_bps": 6.736228997494697
+  },
+  {
+    "seed": 111,
+    "strategy": "twap",
+    "entry_time": 150.0,
+    "arrival_mid": 99.965,
+    "vwap": 100.03877416420822,
+    "filled_qty": 59.99999999999999,
+    "shortfall_bps": 7.37999942061892
+  },
+  {
+    "seed": 111,
+    "strategy": "aggressive",
+    "entry_time": 400.0,
+    "arrival_mid": 99.99000000000001,
+    "vwap": 100.00010466219247,
+    "filled_qty": 60.00000000000001,
+    "shortfall_bps": 1.010567275973695
+  },
+  {
+    "seed": 111,
+    "strategy": "twap",
+    "entry_time": 400.0,
+    "arrival_mid": 99.99000000000001,
+    "vwap": 100.00851446804278,
+    "filled_qty": 60.0,
+    "shortfall_bps": 1.851631967473438
+  },
+  {
+    "seed": 111,
+    "strategy": "aggressive",
+    "entry_time": 650.0,
+    "arrival_mid": 99.94,
+    "vwap": 99.98365586044443,
+    "filled_qty": 60.00000000000001,
+    "shortfall_bps": 4.368206968624323
+  },
+  {
+    "seed": 111,
+    "strategy": "twap",
+    "entry_time": 650.0,
+    "arrival_mid": 99.94,
+    "vwap": 100.00956226060677,
+    "filled_qty": 60.000000000000014,
+    "shortfall_bps": 6.96040230205853
+  },
+  {
+    "seed": 112,
+    "strategy": "aggressive",
+    "entry_time": 150.0,
+    "arrival_mid": 99.81,
+    "vwap": 99.9228923317924,
+    "filled_qty": 60.000000000000014,
+    "shortfall_bps": 11.310723553992073
+  },
+  {
+    "seed": 112,
+    "strategy": "twap",
+    "entry_time": 150.0,
+    "arrival_mid": 99.81,
+    "vwap": 99.92965837676829,
+    "filled_qty": 60.0,
+    "shortfall_bps": 11.988616047318432
+  },
+  {
+    "seed": 112,
+    "strategy": "aggressive",
+    "entry_time": 400.0,
+    "arrival_mid": 99.80000000000001,
+    "vwap": 99.87411242620126,
+    "filled_qty": 60.000000000000014,
+    "shortfall_bps": 7.426094809744824
+  },
+  {
+    "seed": 112,
+    "strategy": "twap",
+    "entry_time": 400.0,
+    "arrival_mid": 99.80000000000001,
+    "vwap": 99.8378920045127,
+    "filled_qty": 60.0,
+    "shortfall_bps": 3.796794039347165
+  },
+  {
+    "seed": 112,
+    "strategy": "aggressive",
+    "entry_time": 650.0,
+    "arrival_mid": 99.82,
+    "vwap": 99.88987977159086,
+    "filled_qty": 59.99999999999999,
+    "shortfall_bps": 7.00057819984598
+  },
+  {
+    "seed": 112,
+    "strategy": "twap",
+    "entry_time": 650.0,
+    "arrival_mid": 99.82,
+    "vwap": 99.86173879606335,
+    "filled_qty": 60.0,
+    "shortfall_bps": 4.181406137382907
+  },
+  {
+    "seed": 113,
+    "strategy": "aggressive",
+    "entry_time": 150.0,
+    "arrival_mid": 100.02,
+    "vwap": 100.08633968016946,
+    "filled_qty": 60.0,
+    "shortfall_bps": 6.6326414886485825
+  },
+  {
+    "seed": 113,
+    "strategy": "twap",
+    "entry_time": 150.0,
+    "arrival_mid": 100.02,
+    "vwap": 100.07654039723124,
+    "filled_qty": 60.0,
+    "shortfall_bps": 5.652909141296268
+  },
+  {
+    "seed": 113,
+    "strategy": "aggressive",
+    "entry_time": 400.0,
+    "arrival_mid": 100.13,
+    "vwap": 100.17042541661823,
+    "filled_qty": 60.00000000000001,
+    "shortfall_bps": 4.037293180688512
+  },
+  {
+    "seed": 113,
+    "strategy": "twap",
+    "entry_time": 400.0,
+    "arrival_mid": 100.13,
+    "vwap": 100.16549227154191,
+    "filled_qty": 60.0,
+    "shortfall_bps": 3.544619149297129
+  },
+  {
+    "seed": 113,
+    "strategy": "aggressive",
+    "entry_time": 650.0,
+    "arrival_mid": 100.155,
+    "vwap": 100.21517887288455,
+    "filled_qty": 60.0,
+    "shortfall_bps": 6.008573998756842
+  },
+  {
+    "seed": 113,
+    "strategy": "twap",
+    "entry_time": 650.0,
+    "arrival_mid": 100.155,
+    "vwap": 100.14331326861918,
+    "filled_qty": 60.00000000000001,
+    "shortfall_bps": -1.1668644981099288
+  },
+  {
+    "seed": 114,
+    "strategy": "aggressive",
+    "entry_time": 150.0,
+    "arrival_mid": 100.12,
+    "vwap": 100.18180082869702,
+    "filled_qty": 60.0,
+    "shortfall_bps": 6.17267565891097
+  },
+  {
+    "seed": 114,
+    "strategy": "twap",
+    "entry_time": 150.0,
+    "arrival_mid": 100.12,
+    "vwap": 100.19563653689023,
+    "filled_qty": 60.0,
+    "shortfall_bps": 7.554588183203098
+  },
+  {
+    "seed": 114,
+    "strategy": "aggressive",
+    "entry_time": 400.0,
+    "arrival_mid": 99.98,
+    "vwap": 100.0138221418469,
+    "filled_qty": 60.0,
+    "shortfall_bps": 3.3828907628423264
+  },
+  {
+    "seed": 114,
+    "strategy": "twap",
+    "entry_time": 400.0,
+    "arrival_mid": 99.98,
+    "vwap": 100.0162295289214,
+    "filled_qty": 60.0,
+    "shortfall_bps": 3.623677627665141
+  },
+  {
+    "seed": 114,
+    "strategy": "aggressive",
+    "entry_time": 650.0,
+    "arrival_mid": 99.97,
+    "vwap": 100.04642345027501,
+    "filled_qty": 60.00000000000001,
+    "shortfall_bps": 7.64463841902727
+  },
+  {
+    "seed": 114,
+    "strategy": "twap",
+    "entry_time": 650.0,
+    "arrival_mid": 99.97,
+    "vwap": 100.04142921667027,
+    "filled_qty": 59.99999999999999,
+    "shortfall_bps": 7.145065186582744
+  }
+]

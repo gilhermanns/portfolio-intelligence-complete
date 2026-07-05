@@ -1,0 +1,33 @@
+{
+  "n_events_sampled": 2000,
+  "n_trades": 11317,
+  "final_mid": 99.945,
+  "avg_spread": 0.10589826839826855,
+  "median_spread": 0.09999999999999432,
+  "realized_volatility_per_sqrt_time_unit": 0.000778828063356335,
+  "avg_imbalance": -0.07287890687022344,
+  "fill_rates_by_type": {
+    "LP": 0.45948881174485917,
+    "Momentum": 0.9804385010666717,
+    "Noise": 0.9633019633389346,
+    "PureTaker": 0.9310698212583646
+  },
+  "avg_adverse_selection_per_fill": -0.04073674588665451,
+  "lp_final_inventory": -14.062938901329677,
+  "lp_final_pnl": 407.4724364788542,
+  "lp_pnl_std": 624.873454212171,
+  "taker_final_pnl": -270.9768572806861,
+  "taker_pnl_std": 3185.810796489884,
+  "execution_shortfall": {
+    "aggressive": {
+      "mean_bps": 7.649643153994647,
+      "std_bps": 2.92786308051839,
+      "n_trials": 45
+    },
+    "twap": {
+      "mean_bps": 6.0019303304580705,
+      "std_bps": 3.3287699264188277,
+      "n_trials": 45
+    }
+  }
+}
