@@ -121,8 +121,8 @@ export default function MonteCarlo() {
                   ["Probability of any loss", `${stats.probLoss}%`],["Probability of +20% gain", `${stats.probGain20}%`],
                   ["Probability of doubling", `${stats.probDouble}%`],["─────────────",""],
                   ["Best case scenario", fmt(stats.bestCase)],["Worst case scenario", fmt(stats.worstCase)],
-                ].map(([label,value]) => label.startsWith("─") ? <div key={label} className="col-span-full border-t border-border my-1" /> : (
-                  <div key={label} className="flex justify-between py-1 border-b border-border/40">
+                ].map(([label,value],i) => label.startsWith("─") ? <div key={i} className="col-span-full border-t border-border my-1" /> : (
+                  <div key={i} className="flex justify-between py-1 border-b border-border/40">
                     <span className="text-sm text-muted-foreground">{label}</span>
                     <span className="text-sm font-medium text-foreground">{value}</span>
                   </div>
@@ -145,4 +145,3 @@ export default function MonteCarlo() {
     </div>
   );
 }
-Das war der letzte fehlende Teil. Das komplette Projekt ist jetzt vollständig im Chat — alle 35+ Dateien mit vollem Code, von Root-Config bis zur letzten Page.

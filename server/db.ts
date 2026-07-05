@@ -14,7 +14,7 @@ const portfolios: Portfolio[] = [{ id: 1, userId: 1, name: "Core Growth Portfoli
 const holdings: Holding[] = [
   { id: 1, portfolioId: 1, ticker: "AAPL", quantity: 150, purchasePrice: 178.5,  sector: "Technology",   assetClass: "equity",    addedAt: new Date() },
   { id: 2, portfolioId: 1, ticker: "MSFT", quantity: 80,  purchasePrice: 415.2,  sector: "Technology",   assetClass: "equity",    addedAt: new Date() },
-  { id: 3, portfolioId: 1, ticker: "NVDA", quantity: 60,  purchasePrice: 875.0,  sector: "Technology",   assetClass: "equity",    addedAt: new Date() },
+  { id: 3, portfolioId: 1, ticker: "NVDA", quantity: 60,  purchasePrice: 87.5,   sector: "Technology",   assetClass: "equity",    addedAt: new Date() },
   { id: 4, portfolioId: 1, ticker: "JPM",  quantity: 100, purchasePrice: 198.3,  sector: "Financials",   assetClass: "equity",    addedAt: new Date() },
   { id: 5, portfolioId: 1, ticker: "JNJ",  quantity: 120, purchasePrice: 152.7,  sector: "Healthcare",   assetClass: "equity",    addedAt: new Date() },
   { id: 6, portfolioId: 1, ticker: "TLT",  quantity: 200, purchasePrice: 94.5,   sector: "Fixed Income", assetClass: "bond",      addedAt: new Date() },

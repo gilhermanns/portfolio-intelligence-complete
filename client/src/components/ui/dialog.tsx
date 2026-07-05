@@ -4,7 +4,7 @@ const DialogContext = createContext<Ctx>({ open: false, setOpen: () => {} });
 export function Dialog({ children }: { children: ReactNode }) { const [open, setOpen] = useState(false); return <DialogContext.Provider value={{ open, setOpen }}>{children}</DialogContext.Provider>; }
 export function DialogTrigger({ children, asChild }: { children: ReactNode; asChild?: boolean }) {
   const { setOpen } = useContext(DialogContext);
-  if (asChild && children && typeof children === "object" && "props" in (children as any)) { const child = children as React.ReactElement; return <child.type {...child.props} onClick={() => setOpen(true)} />; }
+  if (asChild && children && typeof children === "object" && "props" in (children as any)) { const child = children as React.ReactElement; return <child.type {...(child.props as object)} onClick={() => setOpen(true)} />; }
   return <span onClick={() => setOpen(true)}>{children}</span>;
 }
 export function DialogContent({ children, className="" }: { children: ReactNode; className?: string }) {
