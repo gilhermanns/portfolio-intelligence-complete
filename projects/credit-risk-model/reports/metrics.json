@@ -1,0 +1,115 @@
+{
+  "n_total": 20000,
+  "n_train": 12000,
+  "n_calib": 4000,
+  "n_test": 4000,
+  "default_rate_overall": 0.1013,
+  "logistic_raw": {
+    "roc_auc": 0.8239200535723485,
+    "pr_auc": 0.46063932859440565,
+    "ks": 0.5071824722265149,
+    "brier": 0.173833891746176
+  },
+  "gbm": {
+    "roc_auc": 0.8160665533405449,
+    "pr_auc": 0.4454804763783784,
+    "ks": 0.5045072889300984,
+    "brier": 0.15164772277174596
+  },
+  "logistic_sigmoid_calibrated": {
+    "roc_auc": 0.8239200535723485,
+    "pr_auc": 0.46063932859440565,
+    "ks": 0.5071824722265149,
+    "brier": 0.07181621995446955
+  },
+  "logistic_isotonic_calibrated": {
+    "roc_auc": 0.8205302288844247,
+    "pr_auc": 0.43258925721714575,
+    "ks": 0.49453115609814735,
+    "brier": 0.07126820097216478
+  },
+  "majority_class_baseline_brier": 0.0909984375,
+  "confusion_at_threshold_isotonic": {
+    "threshold": 0.2,
+    "tn": 3349,
+    "fp": 246,
+    "fn": 217,
+    "tp": 188,
+    "decline_rate": 0.1085,
+    "precision_declined_are_bad": 0.43317972350230416,
+    "recall_bad_caught": 0.4641975308641975,
+    "false_decline_rate_of_good": 0.06842837273991655
+  },
+  "segment_report": [
+    {
+      "segment": "small_business",
+      "n": 426,
+      "observed_default_rate": 0.11971830985915492,
+      "mean_predicted_pd": 0.1248165013263191,
+      "roc_auc": 0.8358431372549019,
+      "pr_auc": 0.4700598487997924,
+      "ks": 0.5593725490196078,
+      "brier": 0.08062945119328495
+    },
+    {
+      "segment": "credit_card",
+      "n": 883,
+      "observed_default_rate": 0.10079275198187995,
+      "mean_predicted_pd": 0.09689327560472603,
+      "roc_auc": 0.7965075142218323,
+      "pr_auc": 0.39924048053214195,
+      "ks": 0.46091472561061897,
+      "brier": 0.07379169836615003
+    },
+    {
+      "segment": "debt_consolidation",
+      "n": 1206,
+      "observed_default_rate": 0.10033167495854063,
+      "mean_predicted_pd": 0.11163082450695795,
+      "roc_auc": 0.8264881745820162,
+      "pr_auc": 0.4274145017085994,
+      "ks": 0.5328331492554367,
+      "brier": 0.07123342482335838
+    },
+    {
+      "segment": "major_purchase",
+      "n": 449,
+      "observed_default_rate": 0.10022271714922049,
+      "mean_predicted_pd": 0.09420789197411508,
+      "roc_auc": 0.8494774477447744,
+      "pr_auc": 0.5286919874776652,
+      "ks": 0.5526402640264025,
+      "brier": 0.06410865098226233
+    },
+    {
+      "segment": "home_improvement",
+      "n": 561,
+      "observed_default_rate": 0.0962566844919786,
+      "mean_predicted_pd": 0.08841421694959037,
+      "roc_auc": 0.8054825042004529,
+      "pr_auc": 0.39758772857103575,
+      "ks": 0.4730440499671269,
+      "brier": 0.0705744184807247
+    },
+    {
+      "segment": "other",
+      "n": 475,
+      "observed_default_rate": 0.09473684210526316,
+      "mean_predicted_pd": 0.08777976861158146,
+      "roc_auc": 0.8276227390180878,
+      "pr_auc": 0.46845840562523033,
+      "ks": 0.47700258397932815,
+      "brier": 0.06585693605750889
+    }
+  ],
+  "expected_loss": {
+    "point_estimate_total": 24830041.461166836,
+    "mc_base_mean": 24896403.2612279,
+    "mc_base_p95": 25909601.684367657,
+    "mc_base_p99": 26287996.723538492,
+    "mc_stress_mean": 47744121.79817909,
+    "mc_stress_p95": 49052497.60720974,
+    "mc_stress_p99": 49620787.05480587,
+    "stress_unemployment_delta_pp": 4.0
+  }
+}

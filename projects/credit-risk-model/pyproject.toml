@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "credit-risk-model"
+version = "0.1.0"
+description = "Credit default risk model: PD via logistic regression with calibration, SHAP explainability, segment analysis, and expected-loss simulation."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Gil Hermanns" }]
+dependencies = [
+    "numpy>=2.0",
+    "pandas>=2.2",
+    "scikit-learn>=1.5",
+    "matplotlib>=3.9",
+    "scipy>=1.13",
+    "shap>=0.45",
+]
+
+[project.scripts]
+credit-risk = "credit_risk_model.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
