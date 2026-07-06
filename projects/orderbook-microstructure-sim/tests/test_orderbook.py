@@ -141,6 +141,33 @@ def test_depth_and_imbalance():
     assert imb == pytest.approx((10 - 2) / 12)
 
 
+def test_market_order_on_empty_book_is_fully_unfilled():
+    book = LimitOrderBook()
+    trades, remaining = book.market_order(Side.BUY, 5, 0.0, "taker")
+    assert trades == []
+    assert remaining == 5
+
+
+def test_depth_and_imbalance_on_empty_book():
+    book = LimitOrderBook()
+    d = book.depth(5)
+    assert d == {"bids": [], "asks": []}
+    assert book.imbalance(5) is None
+    assert book.mid_price is None
+    assert book.spread is None
+
+
+def test_cancel_of_already_filled_order_returns_false():
+    book = LimitOrderBook()
+    o1, _ = book.add_limit_order(Side.BUY, 100.0, 5, 0.0, "maker")
+    # fully fills and removes o1 from the book's internal order index
+    trades, remaining = book.market_order(Side.SELL, 5, 1.0, "taker")
+    assert remaining == 0
+    assert trades[0].qty == 5
+
+    assert book.cancel(o1.order_id) is False
+
+
 def test_limit_order_walks_multiple_levels():
     book = LimitOrderBook()
     book.add_limit_order(Side.SELL, 100.0, 2, 0.0, "s1")

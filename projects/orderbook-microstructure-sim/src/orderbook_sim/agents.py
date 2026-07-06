@@ -1,7 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from typing import Deque, List, Optional
+from typing import List, Optional
 
 import numpy as np
 
@@ -48,14 +47,12 @@ class LiquidityProvider(BaseAgent):
         quote_size: float,
         inventory_skew: float,
         tick_size: float,
-        max_quote_size_mult: float = 3.0,
     ):
         super().__init__(agent_id, rate)
         self.half_spread = half_spread
         self.quote_size = quote_size
         self.inventory_skew = inventory_skew
         self.tick_size = tick_size
-        self.max_quote_size_mult = max_quote_size_mult
         self.active_bid_id: Optional[int] = None
         self.active_ask_id: Optional[int] = None
         self.fill_events: List[tuple] = []  # (time, side_held, price)

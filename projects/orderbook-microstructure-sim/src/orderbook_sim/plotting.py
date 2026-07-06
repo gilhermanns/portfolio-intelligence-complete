@@ -117,7 +117,7 @@ def plot_execution_shortfall(shortfall_results: List[Dict], out_path: Path) -> N
 
     fig, ax = plt.subplots(figsize=(6, 5))
     x = np.arange(len(strategies))
-    bars = ax.bar(
+    ax.bar(
         x, means, yerr=stds, capsize=6, color=[PALETTE["taker"], PALETTE["lp"]], alpha=0.85, width=0.55
     )
     _style(ax)

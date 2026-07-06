@@ -65,3 +65,13 @@ def test_adverse_selection_for_sell_side_fill():
 
 def test_adverse_selection_none_when_no_fills():
     assert adverse_selection([], [(0.0, 100.0)], horizon=5.0) is None
+
+
+def test_adverse_selection_clamps_to_last_known_mid_past_history_end():
+    # horizon pushes the lookup time beyond the last sampled mid; the
+    # function should fall back to the most recent mid rather than index
+    # out of range or silently drop the fill.
+    fill_events = [(8.0, Side.BUY, 100.0)]
+    mid_history = [(0.0, 100.0), (5.0, 99.0)]
+    cost = adverse_selection(fill_events, mid_history, horizon=10.0)
+    assert cost == pytest.approx(100.0 - 99.0)
