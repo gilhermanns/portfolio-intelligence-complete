@@ -1,7 +1,8 @@
+import numpy as np
 import pandas as pd
 import pytest
 
-from walkforward_backtester.execution import ExecutionConfig, run_backtest
+from walkforward_backtester.execution import ExecutionConfig, _slippage_bps, run_backtest
 
 
 def test_next_bar_fill_and_commission_slippage_math(toy_trade_df):
@@ -94,6 +95,37 @@ def test_take_profit_exits_when_price_spikes():
     log = result.trade_log()
     assert log.iloc[0]["exit_reason"] == "take_profit"
     assert log.iloc[0]["pnl"] > 0
+
+
+def test_vol_scaled_slippage_baseline_ignores_future_bars():
+    # Regression test: the vol-scaled slippage model's "baseline" reference
+    # volatility used to be computed from a fixed early window of the frame
+    # regardless of the current bar, so for a bar near the start of the
+    # series that baseline window could reach past the bar itself into data
+    # that wouldn't yet exist at that point in time. Perturbing prices well
+    # after an early bar must not change the slippage bps computed at that
+    # bar.
+    dates = pd.date_range("2021-01-04", periods=40, freq="B")
+    rng = np.random.default_rng(3)
+    prices = 100 * np.cumprod(1 + rng.normal(0.0, 0.005, 40))
+    df = pd.DataFrame(
+        {"Open": prices, "High": prices, "Low": prices, "Close": prices, "Volume": [1_000_000] * 40},
+        index=dates,
+    )
+    config = ExecutionConfig(slippage_model="vol_scaled", vol_scale_lookback=20, slippage_bps=5.0)
+
+    early_bar = 5
+    bps_before = _slippage_bps(config, df, early_bar)
+
+    # Perturb bars strictly after `early_bar` but still inside the first
+    # `vol_scale_lookback` (20) bars of the frame -- i.e. bars 5..19 are the
+    # future relative to bar 5, yet a fixed "first 20 bars" baseline window
+    # would still reach into them.
+    mutated = df.copy()
+    mutated.loc[mutated.index[10:20], "Close"] = mutated["Close"].iloc[10:20] * 4.0 + 1_000.0
+
+    bps_after = _slippage_bps(config, mutated, early_bar)
+    assert bps_after == pytest.approx(bps_before)
 
 
 def test_max_gross_exposure_caps_vol_target_sizing():

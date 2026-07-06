@@ -9,7 +9,7 @@ nothing here fabricates prices.
 
 from __future__ import annotations
 
-import datetime as dt
+import io
 from pathlib import Path
 
 import pandas as pd
@@ -36,7 +36,7 @@ def _fetch_stooq(symbol: str, timeout: float = 8.0) -> pd.DataFrame:
     text = resp.text.lstrip()
     if text.startswith("<") or "Date,Open" not in text:
         raise ValueError(f"stooq did not return CSV for {symbol} (likely blocked)")
-    df = pd.read_csv(url, index_col="Date")
+    df = pd.read_csv(io.StringIO(text), index_col="Date")
     return _normalize(df)
 
 
@@ -93,6 +93,7 @@ def load_prices(
     symbol = symbol.lower()
     errors: list[str] = []
     df: pd.DataFrame | None = None
+    fetched_live = False
 
     attempts = {
         "stooq": _fetch_stooq,
@@ -105,6 +106,7 @@ def load_prices(
             df = attempts[name](symbol)
             if len(df) < 100:
                 raise ValueError(f"{name} returned only {len(df)} rows, too little history")
+            fetched_live = True
             break
         except Exception as exc:  # noqa: BLE001 - deliberately broad, this is a fallback chain
             errors.append(f"{name}: {exc}")
@@ -122,6 +124,14 @@ def load_prices(
         else:
             raise RuntimeError(f"Could not load data for {symbol}: {'; '.join(errors)}")
 
+    if fetched_live:
+        try:
+            save_to_cache(symbol, df)
+        except OSError:
+            # Best-effort only -- a read-only filesystem or missing
+            # permissions shouldn't fail a load that already succeeded.
+            pass
+
     if start is not None:
         df = df[df.index >= pd.Timestamp(start)]
     if end is not None:
@@ -134,7 +144,3 @@ def save_to_cache(symbol: str, df: pd.DataFrame) -> Path:
     path = CACHE_DIR / f"{symbol.lower()}.csv"
     df[REQUIRED_COLUMNS].to_csv(path, index_label="Date")
     return path
-
-
-def cache_snapshot_date() -> str:
-    return dt.date.today().isoformat()

@@ -107,7 +107,12 @@ def _slippage_bps(config: ExecutionConfig, df: pd.DataFrame, i: int) -> float:
     if lookback.empty or lookback.std(ddof=0) == 0 or np.isnan(lookback.std(ddof=0)):
         return config.slippage_bps
     daily_vol = lookback.std(ddof=0)
-    baseline_vol = returns.iloc[: max(config.vol_scale_lookback, 1)].std(ddof=0)
+    # Baseline reference vol: an early-period window, but capped at `i` so
+    # that for bars near the start of the series it never reaches past the
+    # current bar into data that wouldn't yet be known (i.e. it stays a
+    # strict prefix of history-up-to-i, not a fixed early window that could
+    # overlap the future when i is small).
+    baseline_vol = returns.iloc[: min(max(config.vol_scale_lookback, 1), i)].std(ddof=0)
     if not baseline_vol or np.isnan(baseline_vol) or baseline_vol == 0:
         return config.slippage_bps
     return config.slippage_bps * float(daily_vol / baseline_vol)
