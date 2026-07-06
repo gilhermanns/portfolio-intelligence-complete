@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "portfolio-optimizer"
+version = "0.1.0"
+description = "Constrained portfolio optimizer: Markowitz MPT, minimum-variance, risk parity, and Black-Litterman with position/sector/turnover constraints, backtested against equal-weight and SPY."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Gil Hermanns" }]
+dependencies = [
+    "numpy>=1.26,<2.0",
+    "pandas>=2.1",
+    "cvxpy>=1.4",
+    "matplotlib>=3.8",
+    "PyYAML>=6.0",
+    "requests>=2.31",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+portfolio_optimizer = ["resources/*.csv"]

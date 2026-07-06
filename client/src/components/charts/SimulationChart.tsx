@@ -20,7 +20,7 @@ export function SimulationChart({samplePaths,percentilePaths,initialValue,timeHo
   return(
     <div className="w-full overflow-x-auto">
       <svg viewBox={`0 0 ${width} ${height}`} width="100%" style={{maxWidth:width,display:"block"}}>
-        {yLabels.map(({y})=><line key={y} x1={PAD.left} x2={width-PAD.right} y1={y} y2={y} stroke="hsl(var(--border))" strokeWidth="0.5" strokeDasharray="4 3"/>)}
+        {yLabels.map(({y},i)=><line key={i} x1={PAD.left} x2={width-PAD.right} y1={y} y2={y} stroke="hsl(var(--border))" strokeWidth="0.5" strokeDasharray="4 3"/>)}
         <line x1={PAD.left} x2={width-PAD.right} y1={initialY} y2={initialY} stroke="hsl(var(--muted-foreground))" strokeWidth="1" strokeDasharray="6 3"/>
         <text x={PAD.left+4} y={initialY-5} fontSize="9" fill="hsl(var(--muted-foreground))">Initial: {fmt(initialValue)}</text>
         {samplePaths.map((p,i)=><path key={i} d={toPath(p)} fill="none" stroke="hsl(var(--accent))" strokeWidth="0.6" opacity="0.12"/>)}
@@ -29,7 +29,7 @@ export function SimulationChart({samplePaths,percentilePaths,initialValue,timeHo
         <path d={toPath(percentilePaths.p50)} fill="none" stroke="hsl(var(--accent))" strokeWidth="2.5" strokeLinecap="round"/>
         <path d={toPath(percentilePaths.p5)} fill="none" stroke="hsl(var(--accent))" strokeWidth="1" opacity="0.4" strokeDasharray="3 2"/>
         <path d={toPath(percentilePaths.p95)} fill="none" stroke="hsl(var(--accent))" strokeWidth="1" opacity="0.4" strokeDasharray="3 2"/>
-        {yLabels.map(({v,y})=><text key={v} x={PAD.left-6} y={y+4} fontSize="10" fill="hsl(var(--muted-foreground))" textAnchor="end">{fmt(v)}</text>)}
+        {yLabels.map(({v,y},i)=><text key={i} x={PAD.left-6} y={y+4} fontSize="10" fill="hsl(var(--muted-foreground))" textAnchor="end">{fmt(v)}</text>)}
         {xLabels.map(({t,label}:any)=><text key={t} x={xScale(t)} y={height-10} fontSize="10" fill="hsl(var(--muted-foreground))" textAnchor="middle">{label}</text>)}
         <g transform={`translate(${PAD.left+8},${PAD.top+8})`}>
           <rect width="100" height="52" rx="4" fill="hsl(var(--card))" opacity="0.85"/>

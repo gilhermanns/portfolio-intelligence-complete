@@ -22,12 +22,10 @@ const navGroups = [
  
 function NavItem({ href, label, icon: Icon, isActive, collapsed }: { href: string; label: string; icon: any; isActive: boolean; collapsed: boolean }) {
   return (
-    <Link href={href}>
-      <a className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-all text-sm font-medium group ${isActive ? "bg-accent/15 text-accent" : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"} ${collapsed ? "justify-center" : ""}`} title={collapsed ? label : undefined}>
-        <Icon className={`h-4 w-4 flex-shrink-0 ${isActive ? "text-accent" : "text-muted-foreground group-hover:text-foreground"}`} />
-        {!collapsed && <span>{label}</span>}
-        {isActive && !collapsed && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-accent" />}
-      </a>
+    <Link href={href} className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-all text-sm font-medium group ${isActive ? "bg-accent/15 text-accent" : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"} ${collapsed ? "justify-center" : ""}`} title={collapsed ? label : undefined}>
+      <Icon className={`h-4 w-4 flex-shrink-0 ${isActive ? "text-accent" : "text-muted-foreground group-hover:text-foreground"}`} />
+      {!collapsed && <span>{label}</span>}
+      {isActive && !collapsed && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-accent" />}
     </Link>
   );
 }

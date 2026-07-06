@@ -84,7 +84,7 @@ export default function Portfolio() {
                     <td className="py-2.5 px-3"><span className="font-medium text-foreground">{h.ticker}</span><span className="text-xs text-muted-foreground ml-2">{h.quantity} sh.</span></td>
                     <td className="py-2.5 px-3 text-muted-foreground text-xs">{h.sector}</td>
                     <td className="py-2.5 px-3 text-right font-medium text-foreground">{fmt(h.currentValue)}</td>
-                    <td className={`py-2.5 px-3 text-right font-medium ${h.pnl >= 0 ? "text-green-400" : "text-red-400"}`}>{h.pnl >= 0 ? "+" : ""}{fmt(h.pnl)}</td>
+                    <td className={`py-2.5 px-3 text-right font-medium ${h.pnl >= 0 ? "text-green-400" : "text-red-400"}`}>{h.pnl >= 0 ? "+" : "-"}{fmt(h.pnl)}</td>
                     <td className={`py-2.5 px-3 text-right ${h.pnlPct >= 0 ? "text-green-400" : "text-red-400"}`}>{h.pnlPct >= 0 ? "+" : ""}{h.pnlPct.toFixed(2)}%</td>
                     <td className="py-2.5 px-3 text-right text-muted-foreground">{h.weight}%</td>
                   </tr>

@@ -1,0 +1,11 @@
+Heston calibration round-trip (synthetic Monte Carlo market)
+==============================================================
+Surface build time: 2.6s (5 maturities x 7 strikes, 200,000 MC paths each)
+Calibration time: 2.7s, nfev=8, final cost=8.842901e-06
+
+param           seeded      fitted    rel. error
+kappa           2.0000      2.0873        4.36%
+theta           0.0450      0.0443        1.66%
+sigma_v         0.5500      0.5580        1.46%
+rho            -0.6500     -0.6459        0.63%
+v0              0.0500      0.0507        1.48%

@@ -1,0 +1,25 @@
+# Default configuration for `python -m portfolio_optimizer.cli --config config.yaml`
+universe:
+  tickers: [AAPL, GOOG, META, T, JPM, MA, PFE, WMT, SBUX, GE, XOM, TLT, GLD]
+  start: "2016-11-01"
+  end: "2024-11-29"
+  use_cache_only: false  # set true to skip the live stooq attempt entirely
+
+constraints:
+  long_only: true
+  max_weight: 0.25
+  tc_bps: 10.0
+  sector_caps:
+    Technology: 0.40
+    Financials: 0.35
+    "Communication Services": 0.30
+
+backtest:
+  window_months: 30
+  rf: 0.02
+
+black_litterman:
+  delta: 2.5
+  tau: 0.05
+
+output_dir: reports
