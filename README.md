@@ -25,8 +25,9 @@ Open `http://localhost:5173`.
 ## Project Structure
 
 ```
-client/   React + Vite + Tailwind frontend
-server/   Express + tRPC API, in-memory data store
+client/    React + Vite + Tailwind frontend
+server/    Express + tRPC API, in-memory data store
+projects/  Seven standalone quant finance projects (see below)
 ```
 
 ## Testing
@@ -35,3 +36,12 @@ server/   Express + tRPC API, in-memory data store
 cd server && npx tsc --noEmit   # typecheck the API
 cd client && npx tsc --noEmit   # typecheck the frontend
 ```
+
+## Quant Finance Projects
+
+This repo also hosts seven independent, fully-tested Python projects under
+[`projects/`](projects/) — a portfolio optimizer, a walk-forward strategy
+backtester, an order book microstructure simulator, a risk dashboard, an
+options/volatility lab, a sentiment-signals pipeline, and a credit risk
+model. Each one is self-contained with its own tests, README, and results;
+see [`projects/README.md`](projects/README.md) for the full index.
