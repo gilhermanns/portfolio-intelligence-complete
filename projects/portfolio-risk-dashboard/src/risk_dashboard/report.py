@@ -49,6 +49,9 @@ commodity (WTI oil) factors. R-squared = {r_squared:.3f}.</p>
 <h2>5. Correlation structure</h2>
 <div class="chart">{corr_heatmap}</div>
 <h3>Correlation regime: calm vs. crisis</h3>
+<p>Average pairwise correlation, calm (2013-2014) vs. each crisis window. The 12-asset
+column uses the full primary portfolio (available through the 2008 crisis only); the
+4-factor column extends to 2020 and 2022 using just the factor-proxy assets.</p>
 {regime_table}
 <div class="chart">{regime_chart}</div>
 
@@ -116,6 +119,24 @@ def _stress_table(result: AnalysisResult) -> str:
     )
 
 
+def _regime_table(result: AnalysisResult) -> str:
+    """Combine the 12-asset (primary window) and 4-factor (extended window) correlation
+    regime comparisons into one table, matching the README presentation. The 12-asset
+    comparison only reaches the 2008 crisis (individual-stock history ends 2018-04-11),
+    so later periods show a dash in that column rather than a misleading blank.
+    """
+    main = result.regime_main["avg_pairwise_corr"]
+    extended = result.regime_extended["avg_pairwise_corr"]
+    rows = ""
+    for period in extended.index:
+        main_cell = f"{main.loc[period]:.2%}" if period in main.index else "&mdash;"
+        rows += f"<tr><td>{period}</td><td>{main_cell}</td><td>{extended.loc[period]:.2%}</td></tr>"
+    return (
+        "<table><tr><th>Period</th><th>Avg. pairwise correlation (12-asset)</th>"
+        f"<th>Avg. pairwise correlation (4-factor)</th></tr>{rows}</table>"
+    )
+
+
 def _drawdown_table(result: AnalysisResult) -> str:
     rows = ""
     for n, (val, start, end) in result.worst_drawdowns.items():
@@ -152,7 +173,7 @@ def build_html_report(result: AnalysisResult) -> str:
         r_squared=result.factor_result.r_squared,
         factor_table=_factor_table(result),
         corr_heatmap=corr_heatmap,
-        regime_table=_df_table(result.regime_extended, pct_cols=["avg_pairwise_corr"], fmt="{}"),
+        regime_table=_regime_table(result),
         regime_chart=regime_chart,
         stress_table=_stress_table(result),
         stress_chart=stress_chart,

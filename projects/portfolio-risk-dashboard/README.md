@@ -92,11 +92,16 @@ pip install -e .
 pytest -q
 
 # Generate the self-contained HTML risk report (tries live data, falls back to cache)
-python -m risk_dashboard.report --config portfolio.yaml --out reports/risk_report.html
+python -m risk_dashboard.report --config portfolio.yaml --out reports/risk_report.html --n-sims 50000
 
-# Or force the bundled cached data (no network calls at all)
-python -m risk_dashboard.report --config portfolio.yaml --out reports/risk_report.html --offline
+# Or force the bundled cached data (no network calls at all) -- this is the exact
+# command used to produce reports/risk_report.html and the Results section below
+python -m risk_dashboard.report --config portfolio.yaml --out reports/risk_report.html --offline --n-sims 50000
 ```
+
+`--n-sims` defaults to 20,000 if omitted; the Monte Carlo VaR/ES figures below use
+50,000 and will differ slightly (Monte Carlo sampling noise, same fixed seed) at the
+default.
 
 Open `reports/risk_report.html` in a browser — every chart is inline SVG, no
 external assets or JavaScript.
