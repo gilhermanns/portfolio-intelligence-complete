@@ -44,3 +44,27 @@ def test_deep_otm_call_near_zero():
 def test_invalid_option_type_raises():
     with pytest.raises(ValueError):
         black_scholes_price(100, 100, 0.05, 0.2, 1.0, option_type="straddle")
+
+
+@pytest.mark.parametrize("strike", [0.01, 1.0, 1_000_000.0])
+def test_put_call_parity_at_extreme_strikes(strike):
+    # Parity is a model-free no-arbitrage identity, so it must hold exactly
+    # (up to floating point) however far the strike sits from the spot --
+    # near-worthless low strikes and effectively unreachable high strikes
+    # alike, not just the well-behaved near-the-money case above.
+    spot, rate, vol, ttm = 100.0, 0.03, 0.20, 1.0
+    call = black_scholes_price(spot, strike, rate, vol, ttm, "call")
+    put = black_scholes_price(spot, strike, rate, vol, ttm, "put")
+    lhs = call - put
+    rhs = spot - strike * np.exp(-rate * ttm)
+    assert lhs == pytest.approx(rhs, abs=1e-6)
+
+
+def test_zero_ttm_raises():
+    with pytest.raises(ValueError):
+        black_scholes_price(100, 100, 0.05, 0.2, 0.0, option_type="call")
+
+
+def test_zero_vol_raises():
+    with pytest.raises(ValueError):
+        black_scholes_price(100, 100, 0.05, 0.0, 1.0, option_type="call")

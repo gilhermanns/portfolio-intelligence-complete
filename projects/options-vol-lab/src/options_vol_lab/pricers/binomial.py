@@ -23,6 +23,8 @@ def binomial_price(
     """
     if steps < 1:
         raise ValueError("steps must be >= 1")
+    if ttm <= 0 or vol <= 0:
+        raise ValueError("time to maturity and volatility must be positive")
     dt = ttm / steps
     u = np.exp(vol * np.sqrt(dt))
     d = 1.0 / u

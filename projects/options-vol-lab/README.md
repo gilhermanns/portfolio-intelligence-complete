@@ -128,8 +128,8 @@ Calibrating the 5 Heston parameters back to the Monte Carlo surface above
 (`scripts/build_surface.py`, real output):
 
 ```
-Surface build time: 2.7s (5 maturities x 7 strikes, 200,000 MC paths each)
-Calibration time: 3.4s, nfev=8, final cost=8.842901e-06
+Surface build time: 2.6s (5 maturities x 7 strikes, 200,000 MC paths each)
+Calibration time: 2.7s, nfev=8, final cost=8.842901e-06
 
 param           seeded      fitted    rel. error
 kappa           2.0000      2.0873        4.36%

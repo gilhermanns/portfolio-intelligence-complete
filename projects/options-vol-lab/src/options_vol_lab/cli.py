@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import sys
 
 from options_vol_lab.pricers.black_scholes import black_scholes_price
 from options_vol_lab.pricers.binomial import binomial_price
@@ -32,12 +33,16 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv=None) -> None:
     args = build_parser().parse_args(argv)
 
-    bs = black_scholes_price(args.spot, args.strike, args.rate, args.vol, args.ttm,
-                              args.option_type, args.div)
-    binom = binomial_price(args.spot, args.strike, args.rate, args.vol, args.ttm,
-                            args.option_type, args.div, steps=args.steps, american=args.american)
-    mc = monte_carlo_price(args.spot, args.strike, args.rate, args.vol, args.ttm,
-                            args.option_type, args.div, n_paths=args.paths, seed=args.seed)
+    try:
+        bs = black_scholes_price(args.spot, args.strike, args.rate, args.vol, args.ttm,
+                                  args.option_type, args.div)
+        binom = binomial_price(args.spot, args.strike, args.rate, args.vol, args.ttm,
+                                args.option_type, args.div, steps=args.steps, american=args.american)
+        mc = monte_carlo_price(args.spot, args.strike, args.rate, args.vol, args.ttm,
+                                args.option_type, args.div, n_paths=args.paths, seed=args.seed)
+    except ValueError as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        raise SystemExit(1) from exc
 
     greeks_a = analytic_greeks(args.spot, args.strike, args.rate, args.vol, args.ttm,
                                args.option_type, args.div)

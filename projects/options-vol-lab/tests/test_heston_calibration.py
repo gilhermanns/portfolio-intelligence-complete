@@ -43,6 +43,25 @@ def test_calibration_recovers_seeded_parameters(synthetic_surface):
     assert fitted.v0 == pytest.approx(true_params["v0"], rel=0.05)
 
 
+def test_calibration_robust_to_poor_initial_guess(synthetic_surface):
+    # A production calibration won't always get a well-informed starting
+    # point. Start far from the truth and near the opposite end of a couple
+    # of bounds (mean-reverting speed too fast, correlation flipped sign) and
+    # confirm the optimizer still converges to the seeded parameters rather
+    # than stalling in a local minimum.
+    true_params, spot, rate, strikes, maturities, ivs = synthetic_surface
+    poor_guess = HestonParams(kappa=10.0, theta=0.5, sigma_v=2.0, rho=0.5, v0=0.5)
+
+    fitted, result = calibrate_heston(strikes, maturities, ivs, spot, rate, poor_guess)
+
+    assert result.success or result.status > 0
+    assert fitted.kappa == pytest.approx(true_params["kappa"], rel=0.05)
+    assert fitted.theta == pytest.approx(true_params["theta"], rel=0.05)
+    assert fitted.sigma_v == pytest.approx(true_params["sigma_v"], rel=0.05)
+    assert fitted.rho == pytest.approx(true_params["rho"], rel=0.05)
+    assert fitted.v0 == pytest.approx(true_params["v0"], rel=0.05)
+
+
 def test_calibrated_model_reprices_surface_accurately(synthetic_surface):
     true_params, spot, rate, strikes, maturities, ivs = synthetic_surface
     initial_guess = HestonParams(kappa=1.0, theta=0.06, sigma_v=0.3, rho=-0.3, v0=0.03)
