@@ -26,8 +26,8 @@ NEGATIVE_TERMS = {
     "bust", "shrink", "shrinks", "shrank", "shrinking", "contraction", "cut", "cuts",
     "cutting", "layoff", "layoffs", "lawsuit", "investigation", "probe", "fraud",
     "scandal", "recall", "warns", "warned", "warning", "pessimistic", "pessimism",
-    "shortfall", "decline", "declined", "declines", "declining", "slowdown", "slump",
-    "downturn", "crash", "crashed", "crashes", "sell-off", "selloff", "risk", "risks",
+    "shortfall", "decline", "declined", "declines", "declining", "slowdown",
+    "downturn", "crash", "crashed", "crashes", "selloff", "risk", "risks",
     "concern", "concerns", "concerning", "default", "bankruptcy", "bankrupt", "delay",
     "delayed", "delays", "volatile", "volatility", "sued", "penalty", "fine", "fined",
 }

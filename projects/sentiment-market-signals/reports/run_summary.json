@@ -67,71 +67,71 @@
     {
       "scorer": "classifier",
       "horizon": 1,
-      "mean_coef": -0.0003481748357364079,
-      "mean_tstat": -0.16675115016412162,
+      "mean_coef": -0.00034817483573640833,
+      "mean_tstat": -0.16675115016412176,
       "n_tickers": 5
     },
     {
       "scorer": "classifier",
       "horizon": 2,
-      "mean_coef": -5.379834951296256e-05,
-      "mean_tstat": 0.10957840011909525,
+      "mean_coef": -5.37983495129618e-05,
+      "mean_tstat": 0.109578400119096,
       "n_tickers": 5
     },
     {
       "scorer": "classifier",
       "horizon": 3,
-      "mean_coef": 0.000456644301052946,
-      "mean_tstat": 0.27343827895430584,
+      "mean_coef": 0.00045664430105294616,
+      "mean_tstat": 0.27343827895430634,
       "n_tickers": 5
     },
     {
       "scorer": "classifier",
       "horizon": 4,
-      "mean_coef": 0.0002797268337736049,
-      "mean_tstat": 0.10076924671449228,
+      "mean_coef": 0.0002797268337736053,
+      "mean_tstat": 0.10076924671449265,
       "n_tickers": 5
     },
     {
       "scorer": "classifier",
       "horizon": 5,
-      "mean_coef": -0.00019342128954371189,
-      "mean_tstat": 0.030814907251445433,
+      "mean_coef": -0.00019342128954371197,
+      "mean_tstat": 0.030814907251445634,
       "n_tickers": 5
     },
     {
       "scorer": "lexicon",
       "horizon": 1,
-      "mean_coef": -0.00026159824926221876,
-      "mean_tstat": -0.04794187970305859,
+      "mean_coef": -0.0002615982492622186,
+      "mean_tstat": -0.047941879703057654,
       "n_tickers": 5
     },
     {
       "scorer": "lexicon",
       "horizon": 2,
-      "mean_coef": 6.182537628558654e-05,
-      "mean_tstat": 0.2662116511596288,
+      "mean_coef": 6.182537628558709e-05,
+      "mean_tstat": 0.26621165115962975,
       "n_tickers": 5
     },
     {
       "scorer": "lexicon",
       "horizon": 3,
-      "mean_coef": 0.00040315444976362166,
-      "mean_tstat": 0.37319226815913914,
+      "mean_coef": 0.0004031544497636208,
+      "mean_tstat": 0.37319226815913725,
       "n_tickers": 5
     },
     {
       "scorer": "lexicon",
       "horizon": 4,
-      "mean_coef": 0.0004367357347543928,
-      "mean_tstat": 0.27679616655112643,
+      "mean_coef": 0.000436735734754393,
+      "mean_tstat": 0.2767961665511246,
       "n_tickers": 5
     },
     {
       "scorer": "lexicon",
       "horizon": 5,
-      "mean_coef": 0.00014538508599276574,
-      "mean_tstat": 0.2192242082073937,
+      "mean_coef": 0.00014538508599276664,
+      "mean_tstat": 0.219224208207396,
       "n_tickers": 5
     }
   ],
@@ -140,189 +140,189 @@
       "ticker": "AAPL",
       "scorer": "lexicon",
       "n_obs": 732,
-      "coef_abs_sentiment": 0.0007199023113508573,
-      "tstat_abs_sentiment": 0.9655271490790303,
-      "pvalue_abs_sentiment": 0.3342808445035095,
-      "coef_dispersion": 0.0005773851172479029,
-      "tstat_dispersion": 0.6115339882457184,
-      "pvalue_dispersion": 0.5408461243901537,
+      "coef_abs_sentiment": 0.0007199023113508475,
+      "tstat_abs_sentiment": 0.9655271490790064,
+      "pvalue_abs_sentiment": 0.33428084450352136,
+      "coef_dispersion": 0.0005773851172478906,
+      "tstat_dispersion": 0.611533988245706,
+      "pvalue_dispersion": 0.5408461243901618,
       "r_squared": 0.001272169729091277
     },
     {
       "ticker": "AAPL",
       "scorer": "classifier",
       "n_obs": 732,
-      "coef_abs_sentiment": 0.0015577754662062845,
-      "tstat_abs_sentiment": 1.780065317609343,
-      "pvalue_abs_sentiment": 0.07506527172902018,
-      "coef_dispersion": 0.0009659030304833392,
-      "tstat_dispersion": 0.9476064092558313,
+      "coef_abs_sentiment": 0.001557775466206287,
+      "tstat_abs_sentiment": 1.780065317609341,
+      "pvalue_abs_sentiment": 0.0750652717290205,
+      "coef_dispersion": 0.0009659030304833396,
+      "tstat_dispersion": 0.9476064092558311,
       "pvalue_dispersion": 0.3433298621103096,
-      "r_squared": 0.003582186777111307
+      "r_squared": 0.003582186777111196
     },
     {
       "ticker": "MSFT",
       "scorer": "lexicon",
       "n_obs": 702,
-      "coef_abs_sentiment": -0.0001675107426388538,
-      "tstat_abs_sentiment": -0.2062868751118962,
-      "pvalue_abs_sentiment": 0.8365668302014917,
-      "coef_dispersion": -0.000451882257146181,
-      "tstat_dispersion": -0.41871877224269993,
-      "pvalue_dispersion": 0.6754216746651199,
-      "r_squared": 0.0002552919319759317
+      "coef_abs_sentiment": -0.00016751074263884045,
+      "tstat_abs_sentiment": -0.20628687511188096,
+      "pvalue_abs_sentiment": 0.8365668302015036,
+      "coef_dispersion": -0.0004518822571461824,
+      "tstat_dispersion": -0.41871877224270315,
+      "pvalue_dispersion": 0.6754216746651176,
+      "r_squared": 0.0002552919319758207
     },
     {
       "ticker": "MSFT",
       "scorer": "classifier",
       "n_obs": 702,
-      "coef_abs_sentiment": -0.0005023877802561677,
-      "tstat_abs_sentiment": -0.4568310432020313,
-      "pvalue_abs_sentiment": 0.6477924910268484,
-      "coef_dispersion": -0.00041803076064386236,
-      "tstat_dispersion": -0.3352099472893458,
+      "coef_abs_sentiment": -0.0005023877802561698,
+      "tstat_abs_sentiment": -0.45683104320203183,
+      "pvalue_abs_sentiment": 0.647792491026848,
+      "coef_dispersion": -0.00041803076064386225,
+      "tstat_dispersion": -0.3352099472893459,
       "pvalue_dispersion": 0.7374667188460731,
-      "r_squared": 0.0004067804484945148
+      "r_squared": 0.00040678044849440376
     },
     {
       "ticker": "TSLA",
       "scorer": "lexicon",
       "n_obs": 739,
-      "coef_abs_sentiment": -0.0025085495043531752,
-      "tstat_abs_sentiment": -1.5998994599785177,
-      "pvalue_abs_sentiment": 0.10962088915933059,
-      "coef_dispersion": -0.004419249010269559,
-      "tstat_dispersion": -2.575521848618141,
-      "pvalue_dispersion": 0.010008894960165448,
-      "r_squared": 0.008454857330137955
+      "coef_abs_sentiment": -0.002508549504353164,
+      "tstat_abs_sentiment": -1.5998994599785064,
+      "pvalue_abs_sentiment": 0.10962088915933316,
+      "coef_dispersion": -0.0044192490102695665,
+      "tstat_dispersion": -2.575521848618151,
+      "pvalue_dispersion": 0.01000889496016515,
+      "r_squared": 0.008454857330138066
     },
     {
       "ticker": "TSLA",
       "scorer": "classifier",
       "n_obs": 739,
-      "coef_abs_sentiment": -0.0012393843983379426,
-      "tstat_abs_sentiment": -0.769211914614253,
-      "pvalue_abs_sentiment": 0.44176751849004026,
-      "coef_dispersion": -0.004614376389414398,
-      "tstat_dispersion": -2.5360958393037105,
-      "pvalue_dispersion": 0.011209605145835256,
-      "r_squared": 0.007051771555967146
+      "coef_abs_sentiment": -0.0012393843983379556,
+      "tstat_abs_sentiment": -0.769211914614256,
+      "pvalue_abs_sentiment": 0.4417675184900385,
+      "coef_dispersion": -0.004614376389414403,
+      "tstat_dispersion": -2.5360958393037083,
+      "pvalue_dispersion": 0.011209605145835326,
+      "r_squared": 0.007051771555967368
     },
     {
       "ticker": "JPM",
       "scorer": "lexicon",
       "n_obs": 701,
-      "coef_abs_sentiment": 0.000528942873738133,
-      "tstat_abs_sentiment": 0.7319549628667752,
-      "pvalue_abs_sentiment": 0.46419605717331225,
-      "coef_dispersion": 0.00039926264575527326,
-      "tstat_dispersion": 0.36593539197174124,
-      "pvalue_dispersion": 0.7144132862794561,
-      "r_squared": 0.0007737534225572551
+      "coef_abs_sentiment": 0.0005289428737381296,
+      "tstat_abs_sentiment": 0.7319549628667673,
+      "pvalue_abs_sentiment": 0.46419605717331713,
+      "coef_dispersion": 0.0003992626457552573,
+      "tstat_dispersion": 0.3659353919717285,
+      "pvalue_dispersion": 0.7144132862794657,
+      "r_squared": 0.0007737534225573661
     },
     {
       "ticker": "JPM",
       "scorer": "classifier",
       "n_obs": 701,
-      "coef_abs_sentiment": -0.0006349341785226743,
-      "tstat_abs_sentiment": -0.6843725344497918,
-      "pvalue_abs_sentiment": 0.49373995485373723,
-      "coef_dispersion": -0.00015156171607265517,
-      "tstat_dispersion": -0.12859459757458142,
+      "coef_abs_sentiment": -0.0006349341785226719,
+      "tstat_abs_sentiment": -0.6843725344497861,
+      "pvalue_abs_sentiment": 0.4937399548537409,
+      "coef_dispersion": -0.00015156171607265542,
+      "tstat_dispersion": -0.12859459757458136,
       "pvalue_dispersion": 0.8976784413253693,
-      "r_squared": 0.0007455519848414971
+      "r_squared": 0.000745551984841164
     },
     {
       "ticker": "XOM",
       "scorer": "lexicon",
       "n_obs": 709,
-      "coef_abs_sentiment": -6.586273338079287e-06,
-      "tstat_abs_sentiment": -0.009958227515271529,
-      "pvalue_abs_sentiment": 0.9920546153318799,
-      "coef_dispersion": -0.00019997626211676393,
-      "tstat_dispersion": -0.25036738192620134,
-      "pvalue_dispersion": 0.802303251932139,
+      "coef_abs_sentiment": -6.586273338085504e-06,
+      "tstat_abs_sentiment": -0.009958227515280851,
+      "pvalue_abs_sentiment": 0.9920546153318724,
+      "coef_dispersion": -0.0001999762621167681,
+      "tstat_dispersion": -0.250367381926205,
+      "pvalue_dispersion": 0.8023032519321361,
       "r_squared": 8.829686141020865e-05
     },
     {
       "ticker": "XOM",
       "scorer": "classifier",
       "n_obs": 709,
-      "coef_abs_sentiment": 0.0011024388976726938,
-      "tstat_abs_sentiment": 1.5362003552460801,
-      "pvalue_abs_sentiment": 0.12448924892391912,
-      "coef_dispersion": 0.0003393728999975246,
-      "tstat_dispersion": 0.4226050461323859,
-      "pvalue_dispersion": 0.6725834443254992,
-      "r_squared": 0.0026109871070224555
+      "coef_abs_sentiment": 0.0011024388976726962,
+      "tstat_abs_sentiment": 1.5362003552460883,
+      "pvalue_abs_sentiment": 0.12448924892391718,
+      "coef_dispersion": 0.00033937289999752367,
+      "tstat_dispersion": 0.422605046132385,
+      "pvalue_dispersion": 0.6725834443254999,
+      "r_squared": 0.0026109871070226776
     }
   ],
   "event_study_pooled": [
     {
       "rel_day": -5,
-      "aar": 0.00038062755792131866,
+      "aar": 0.00038062755792131887,
       "n_events": 2361.0,
-      "car": 0.00038062755792131866
+      "car": 0.00038062755792131887
     },
     {
       "rel_day": -4,
-      "aar": 6.094656126963788e-05,
+      "aar": 6.094656126963779e-05,
       "n_events": 2363.0,
-      "car": 0.00044157411919095655
+      "car": 0.00044157411919095666
     },
     {
       "rel_day": -3,
       "aar": -0.00012661703452359195,
       "n_events": 2365.0,
-      "car": 0.00031495708466736463
+      "car": 0.00031495708466736474
     },
     {
       "rel_day": -2,
-      "aar": 0.00031347643342946087,
+      "aar": 0.000313476433429461,
       "n_events": 2368.0,
-      "car": 0.0006284335180968255
+      "car": 0.0006284335180968257
     },
     {
       "rel_day": -1,
-      "aar": 3.1954291578990443e-06,
+      "aar": 3.1954291578991963e-06,
       "n_events": 2370.0,
-      "car": 0.0006316289472547245
+      "car": 0.0006316289472547249
     },
     {
       "rel_day": 0,
       "aar": 0.0005514388649702928,
       "n_events": 2373.0,
-      "car": 0.0011830678122250172
+      "car": 0.0011830678122250176
     },
     {
       "rel_day": 1,
       "aar": 0.0002772890990152577,
       "n_events": 2373.0,
-      "car": 0.001460356911240275
+      "car": 0.0014603569112402754
     },
     {
       "rel_day": 2,
-      "aar": -3.44081328894122e-05,
+      "aar": -3.440813288941206e-05,
       "n_events": 2372.0,
-      "car": 0.0014259487783508627
+      "car": 0.0014259487783508634
     },
     {
       "rel_day": 3,
-      "aar": 3.0864510403917544e-05,
+      "aar": 3.0864510403917564e-05,
       "n_events": 2369.0,
-      "car": 0.0014568132887547802
+      "car": 0.0014568132887547809
     },
     {
       "rel_day": 4,
       "aar": -4.876292595898841e-06,
       "n_events": 2368.0,
-      "car": 0.0014519369961588813
+      "car": 0.001451936996158882
     },
     {
       "rel_day": 5,
-      "aar": -1.351214314337176e-05,
+      "aar": -1.3512143143371524e-05,
       "n_events": 2365.0,
-      "car": 0.0014384248530155096
+      "car": 0.0014384248530155104
     }
   ],
   "backtest": [

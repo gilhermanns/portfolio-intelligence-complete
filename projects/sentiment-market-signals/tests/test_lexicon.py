@@ -41,3 +41,14 @@ def test_score_bounded_between_minus_one_and_one():
     ]:
         s = lexicon.score(text)
         assert -1.0 <= s <= 1.0
+
+
+def test_every_lexicon_term_is_reachable_by_the_tokenizer():
+    """Every entry in POSITIVE_TERMS/NEGATIVE_TERMS must round-trip through _tokenize as a
+    single token, or it can never actually match anything -- e.g. a hyphenated entry like
+    "sell-off" is silently dead code, since _WORD_RE splits on hyphens and only ever
+    produces "sell" and "off" as separate tokens."""
+    for term in lexicon.POSITIVE_TERMS | lexicon.NEGATIVE_TERMS:
+        assert lexicon._tokenize(term) == [term], (
+            f"lexicon term {term!r} does not round-trip through the tokenizer and can never match"
+        )

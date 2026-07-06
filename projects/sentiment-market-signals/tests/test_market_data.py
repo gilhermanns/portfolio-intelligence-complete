@@ -1,4 +1,5 @@
 import json
+import urllib.error
 from unittest.mock import patch
 
 import numpy as np
@@ -41,6 +42,18 @@ def test_fetch_ohlc_raises_on_empty_data():
     with patch("urllib.request.urlopen", return_value=_FakeResponse(json.dumps(payload).encode())):
         with pytest.raises(ValueError):
             fetch_ohlc("NOTAREALTICKER")
+
+
+def test_fetch_ohlc_raises_connection_error_on_network_failure_not_a_raw_traceback():
+    with patch("urllib.request.urlopen", side_effect=urllib.error.URLError("Network is unreachable")):
+        with pytest.raises(ConnectionError, match="AAPL"):
+            fetch_ohlc("AAPL")
+
+
+def test_fetch_ohlc_raises_value_error_on_unparseable_response():
+    with patch("urllib.request.urlopen", return_value=_FakeResponse(b"<html>rate limited</html>")):
+        with pytest.raises(ValueError, match="AAPL"):
+            fetch_ohlc("AAPL")
 
 
 def test_compute_returns_realized_vol_is_backward_looking_only():

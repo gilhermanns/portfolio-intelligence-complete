@@ -195,7 +195,7 @@ beats the market net of costs, and it doesn't.
 src/sentiment_signals/   importable package (market_data, headlines, lexicon, classifier,
                           alignment, lag_regression, volatility, event_study, backtest,
                           dashboard)
-tests/                    pytest suite (43 tests)
+tests/                    pytest suite (46 tests)
 scripts/run_pipeline.py   end-to-end run: fetch data, score, test, backtest, render charts
 reports/                  CSV outputs and the HTML dashboard from the last real run
 docs/img/                 SVG charts embedded above

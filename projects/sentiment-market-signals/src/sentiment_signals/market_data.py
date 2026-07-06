@@ -7,6 +7,8 @@ endpoint instead, which serves the same kind of real, unauthenticated daily OHLC
 from __future__ import annotations
 
 import json
+import socket
+import urllib.error
 import urllib.request
 from dataclasses import dataclass
 
@@ -21,12 +23,28 @@ def fetch_ohlc(ticker: str, range_: str = "5Y", timeout: int = 15) -> pd.DataFra
 
     Returns a DataFrame indexed by trading date (ascending) with columns
     Open, High, Low, Close, Volume. Raises ValueError if the response has no rows
-    (e.g. unknown ticker).
+    (e.g. unknown ticker) or if the endpoint is unreachable (network error, timeout, or
+    an unparseable response), with a message that says which ticker and endpoint failed
+    rather than surfacing a raw urllib traceback.
     """
     url = HISTORY_URL.format(symbol=ticker.upper(), range_=range_)
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        payload = json.loads(resp.read().decode("utf-8"))
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            raw = resp.read().decode("utf-8")
+    except (urllib.error.URLError, socket.timeout, TimeoutError) as exc:
+        raise ConnectionError(
+            f"Could not reach {url} for ticker {ticker!r} ({exc}). "
+            "This pipeline needs live network access to fetch real price history; "
+            "pytest and the rest of the package work fully offline without it."
+        ) from exc
+    try:
+        payload = json.loads(raw)
+    except json.JSONDecodeError as exc:
+        raise ValueError(
+            f"Response from {url} for ticker {ticker!r} was not valid JSON "
+            f"(got {len(raw)} bytes) -- the endpoint may be down or rate-limiting."
+        ) from exc
     rows = payload.get("data") or []
     if not rows:
         raise ValueError(f"No history data returned for ticker {ticker!r}")
