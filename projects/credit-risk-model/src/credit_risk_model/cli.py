@@ -11,10 +11,9 @@ from __future__ import annotations
 
 import argparse
 
-import numpy as np
 import pandas as pd
 
-from credit_risk_model.data import CATEGORICAL_FEATURES, EMPLOYMENT_STATUSES, FEATURE_COLUMNS, LOAN_PURPOSES
+from credit_risk_model.data import EMPLOYMENT_STATUSES, FEATURE_COLUMNS, LOAN_PURPOSES
 from credit_risk_model.explain import build_linear_explainer, compute_shap_values, explain_instance
 from credit_risk_model.features import feature_names_out
 from credit_risk_model.pipeline import train_all
@@ -80,7 +79,7 @@ def score_applicant(args: argparse.Namespace) -> dict:
     explainer, _ = build_linear_explainer(pipeline, background)
     shap_row = compute_shap_values(pipeline, explainer, applicant)[0]
     feature_names = feature_names_out(pipeline.named_steps["preprocess"])
-    drivers = explain_instance(shap_row, feature_names, base_value=float(explainer.expected_value), top_k=5)
+    explanation = explain_instance(shap_row, feature_names, base_value=float(explainer.expected_value), top_k=5)
 
     return {
         "raw_pd": raw_pd,
@@ -89,7 +88,8 @@ def score_applicant(args: argparse.Namespace) -> dict:
         "decision": decision,
         "approve_threshold": args.approve_threshold,
         "decline_threshold": args.decline_threshold,
-        "top_drivers": drivers,
+        "base_logit": explanation["base_value"],
+        "top_drivers": explanation["drivers"],
     }
 
 
@@ -105,7 +105,7 @@ def main(argv: list[str] | None = None) -> None:
     print(f"Decision cutoffs:    approve < {result['approve_threshold']:.2f} <= refer < {result['decline_threshold']:.2f} <= decline")
     print(f"Decision:            {result['decision'].upper()}")
     print()
-    print("Top drivers (SHAP, logit scale):")
+    print(f"Top drivers (SHAP, logit scale, vs. baseline {result['base_logit']:+.4f}):")
     for d in result["top_drivers"]:
         print(f"  {d['feature']:<35s} {d['shap_value']:+.4f}  ({d['direction']})")
 

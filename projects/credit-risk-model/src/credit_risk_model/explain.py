@@ -37,10 +37,18 @@ def global_importance(shap_values: np.ndarray, feature_names: list[str]) -> pd.D
 
 def explain_instance(
     shap_row: np.ndarray, feature_names: list[str], base_value: float, top_k: int = 5
-) -> list[dict]:
-    """Top contributors (by |SHAP|) for a single scored applicant, on the logit scale."""
+) -> dict:
+    """Baseline logit plus the top contributors (by |SHAP|) for a single scored applicant.
+
+    ``base_value`` is the explainer's expected value (the average model output
+    over the background sample) that every SHAP contribution is measured
+    relative to: ``base_value + sum(all shap values) == the model's raw logit
+    for this applicant``. It is returned alongside the drivers rather than
+    dropped, so callers can show what the applicant's score is being compared
+    against.
+    """
     order = np.argsort(-np.abs(shap_row))[:top_k]
-    return [
+    drivers = [
         {
             "feature": feature_names[i],
             "shap_value": float(shap_row[i]),
@@ -48,3 +56,4 @@ def explain_instance(
         }
         for i in order
     ]
+    return {"base_value": float(base_value), "drivers": drivers}

@@ -1,6 +1,6 @@
 import numpy as np
 
-from credit_risk_model.data import FEATURE_COLUMNS, apply_macro_shock, generate_borrowers
+from credit_risk_model.data import FEATURE_COLUMNS, _true_logit, apply_macro_shock, generate_borrowers
 
 
 def test_default_rate_within_tolerance():
@@ -46,3 +46,11 @@ def test_apply_macro_shock_shifts_unemployment_and_raises_true_pd():
     assert np.allclose(shocked["unemployment_rate"] - df["unemployment_rate"], 5.0)
     # feature columns other than the shocked one are untouched
     assert shocked["income"].equals(df["income"])
+
+    # apply_macro_shock doesn't recompute true_pd -- the copied column is a
+    # stale snapshot from generate_borrowers -- so the actual risk increase
+    # has to be checked against the DGP's logit recomputed on the shocked
+    # features, which is what the stress scenario in expected_loss relies on.
+    logit_before = _true_logit(df)
+    logit_after = _true_logit(shocked)
+    assert np.all(logit_after > logit_before)

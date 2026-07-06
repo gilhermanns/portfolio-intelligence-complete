@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 from credit_risk_model.data import CATEGORICAL_FEATURES, NUMERIC_FEATURES

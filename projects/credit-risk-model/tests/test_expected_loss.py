@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
+from credit_risk_model.data import FEATURE_COLUMNS, apply_macro_shock
 from credit_risk_model.expected_loss import (
     EAD_BASE_BY_PURPOSE,
     EAD_INCOME_SCALE,
@@ -10,6 +11,7 @@ from credit_risk_model.expected_loss import (
     expected_loss_point_estimate,
     simulate_portfolio_losses,
 )
+from credit_risk_model.pipeline import train_all
 
 
 def test_expected_loss_point_estimate_hand_checked_toy_portfolio():
@@ -86,3 +88,30 @@ def test_higher_pd_gives_higher_expected_portfolio_loss():
     low_losses = simulate_portfolio_losses(low_pd, purpose, income, n_sims=800, rng=np.random.default_rng(6))
     high_losses = simulate_portfolio_losses(high_pd, purpose, income, n_sims=800, rng=np.random.default_rng(7))
     assert high_losses.mean() > low_losses.mean()
+
+
+def test_macro_stress_scenario_raises_model_pd_and_portfolio_expected_loss():
+    """End-to-end stress test: shifting the macro unemployment_rate feature up
+    via apply_macro_shock must raise the *trained model's* re-scored PDs (not
+    just the DGP's ground truth), and that PD increase must flow through to a
+    higher Monte Carlo expected loss -- otherwise the "stress scenario" in the
+    report would be measuring nothing.
+    """
+    artifacts = train_all(n=8_000, seed=40)
+    df = artifacts.df
+    calibrator = artifacts.calibrator_isotonic
+
+    pd_base = calibrator.predict_proba(df[FEATURE_COLUMNS])[:, 1]
+    shocked_df = apply_macro_shock(df, unemployment_delta=4.0)
+    pd_shocked = calibrator.predict_proba(shocked_df[FEATURE_COLUMNS])[:, 1]
+
+    # The shock must not lower any borrower's PD, and must raise it on average.
+    assert (pd_shocked >= pd_base - 1e-12).all()
+    assert pd_shocked.mean() > pd_base.mean()
+
+    rng = np.random.default_rng(41)
+    purpose = df["loan_purpose"].to_numpy()
+    income = df["income"].to_numpy()
+    base_losses = simulate_portfolio_losses(pd_base, purpose, income, n_sims=500, rng=rng)
+    stress_losses = simulate_portfolio_losses(pd_shocked, purpose, income, n_sims=500, rng=rng)
+    assert stress_losses.mean() > base_losses.mean()

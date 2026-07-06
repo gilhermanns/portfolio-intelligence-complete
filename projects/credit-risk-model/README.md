@@ -120,7 +120,7 @@ Calibrated PD (isotonic): 0.8750
 Decision cutoffs:    approve < 0.07 <= refer < 0.20 <= decline
 Decision:            DECLINE
 
-Top drivers (SHAP, logit scale):
+Top drivers (SHAP, logit scale, vs. baseline -0.5259):
   num__utilization                    +0.7905  (increases risk)
   cat__employment_status_unemployed   +0.7052  (increases risk)
   num__dti                            +0.6485  (increases risk)
