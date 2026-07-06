@@ -239,9 +239,11 @@ generally strong bull market):
   correctness), not as an investment thesis.
   Risk parity's cap-constrained branch is only approximately equal-risk
   once a max-weight or sector cap actually binds (see the docstring in
-  `optimizers.risk_parity`); the unconstrained case is exact, and that's
-  what `tests/test_optimizers.py::test_risk_parity_gives_near_equal_risk_contributions`
-  checks.
+  `optimizers.risk_parity`); the unconstrained case is exact
+  (`test_risk_parity_gives_near_equal_risk_contributions`), and the capped
+  case is checked to stay within a sane band around equal risk rather than
+  collapsing to naive equal weight
+  (`test_risk_parity_with_max_weight_cap_is_not_naive_equal_weight`).
 - **Single backtest window**: results above are one historical path (a bull
   market with two large drawdowns) - not a claim that any strategy
   dominates in general. A natural extension is walk-forward validation
