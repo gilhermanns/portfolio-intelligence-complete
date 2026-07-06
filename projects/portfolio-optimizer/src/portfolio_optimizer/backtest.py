@@ -29,10 +29,16 @@ def _equal_weight(tickers: list[str]) -> pd.Series:
 
 
 def _rebalance_dates(prices: pd.DataFrame, window_months: int) -> list[pd.Timestamp]:
-    month_ends = prices.resample("ME").last().index
-    month_ends = [d for d in month_ends if d in prices.index] or list(
-        prices.groupby(prices.index.to_period("M")).apply(lambda g: g.index[-1])
-    )
+    """The last trading day of every calendar month present in the price panel.
+
+    Calendar month-end (what ``resample("ME")`` labels a bucket with) is a
+    weekend or holiday more often than not, so it rarely appears in a daily
+    trading calendar -- grouping by period and taking each group's last
+    index entry is what actually gets "the last trading day of the month"
+    instead of silently dropping every month whose calendar end isn't itself
+    a trading day.
+    """
+    month_ends = list(prices.groupby(prices.index.to_period("M")).apply(lambda g: g.index[-1]))
     if window_months >= len(month_ends):
         raise ValueError("not enough monthly history for the requested trailing window")
     return list(month_ends[window_months:])

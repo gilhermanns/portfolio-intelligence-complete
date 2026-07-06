@@ -135,15 +135,19 @@ actually running this code against that data - nothing here is invented.
 | TLT | Fixed Income | 25.0% | 5.0% | 25.0% | 0.0% |
 | GLD | Commodities | 25.0% | 25.0% | 18.1% | 0.0% |
 
-The 25% figures are the configured `max_weight` cap binding, most visibly on
-TLT/GLD for MinVariance and RiskParity (both want more of these low-vol
-assets than the cap allows) and on AAPL/META for MaxSharpe/BlackLitterman
-(both want more of the highest-Sharpe/highest-conviction names). RiskParity's
-weights are legitimately spread (4-8% each, not the naive 1/13 = 7.7%
-equal-weight) because it equalizes *risk* contribution, not dollar weight -
-see `reports/risk_contrib_RiskParity.svg`, where every asset contributes
-almost exactly 1/13 = 7.7% of portfolio variance despite very different
-weights.
+The 25% figures are the configured `max_weight` cap binding: TLT and GLD for
+MinVariance, AAPL/WMT/GLD for MaxSharpe, and AAPL/META for BlackLitterman all
+want more of their respective low-vol or highest-conviction names than the
+cap allows. RiskParity only hits the cap on TLT (its low volatility makes an
+uncapped ERC solve want well above 25%); GLD's 18.1% here is an unconstrained
+optimum, not a cap. RiskParity's remaining weights are otherwise legitimately
+spread (3.6-8.4% each, not the naive 1/13 = 7.7% equal-weight) because it
+equalizes *risk* contribution, not dollar weight - see
+`reports/risk_contrib_RiskParity.svg`, where each asset contributes between
+roughly 7.3% and 9.4% of portfolio variance (vs. the 7.7% equal-risk target).
+The remaining spread is TLT's cap pulling the solve away from the exact
+unconstrained ERC solution - see the `risk_parity` docstring in
+`optimizers.py` for why a binding cap only gives an approximate equalization.
 
 Black-Litterman's posterior expected returns vs. the equilibrium prior (the
 three views: AAPL absolute +15%/yr, tech-basket beats financials-basket by
@@ -160,40 +164,50 @@ three views: AAPL absolute +15%/yr, tech-basket beats financials-basket by
 
 ### Rolling monthly backtest, 30-month trailing window, 10 bps transaction cost
 
+The first 30 months of the universe's history are consumed by the initial
+trailing window, so the rolling backtest itself runs 2019-05-31 to
+2024-11-29 (66 monthly rebalances) even though `mu`/`Sigma` for the very
+first rebalance are estimated from data going back to 2016-11.
+
 | Strategy | CAGR | Ann. Vol | Sharpe (rf=2%) | Max Drawdown | Avg Turnover/Rebalance | Tracking Error vs SPY |
 |---|---:|---:|---:|---:|---:|---:|
-| BlackLitterman | 24.5% | 22.7% | 0.99 | -35.9% | 7.3% | 17.3% |
-| EqualWeight | 19.7% | 14.2% | 1.24 | -22.8% | 5.8% | 22.0% |
-| MaxSharpe | 13.0% | 13.8% | 0.79 | -22.5% | 22.6% | 21.6% |
-| MinVariance | 9.1% | 9.9% | 0.72 | -17.4% | 3.8% | 27.0% |
-| RiskParity | 11.2% | 10.4% | 0.89 | -20.5% | 5.2% | 24.3% |
-| SPY (buy & hold) | 24.0% | 28.8% | 0.76 | -30.9% | - | 0.0% |
+| BlackLitterman | 26.6% | 25.8% | 0.95 | -35.7% | 6.2% | 16.7% |
+| EqualWeight | 18.3% | 17.4% | 0.94 | -28.3% | 4.8% | 21.6% |
+| MaxSharpe | 15.8% | 14.3% | 0.97 | -21.6% | 18.5% | 23.4% |
+| MinVariance | 9.9% | 10.8% | 0.73 | -17.6% | 3.6% | 27.8% |
+| RiskParity | 12.5% | 11.5% | 0.91 | -20.5% | 4.4% | 25.2% |
+| SPY (buy & hold) | 37.0% | 31.0% | 1.13 | -31.4% | - | 0.0% |
 
-Takeaways from this particular universe and window (2016-11 to 2024-11, a
-strong bull market with two sharp drawdowns - COVID 2020 and the 2022 rate
-shock):
+Takeaways from this particular universe and window (2019-05 to 2024-11, which
+includes the COVID crash/recovery and the 2022 rate shock, on top of a
+generally strong bull market):
 
-- **Nothing beat naive equal-weight on a risk-adjusted basis.** EqualWeight's
-  1.24 Sharpe is the best of the group, beating every optimized strategy
-  including Black-Litterman and matching or beating SPY's own realized
-  Sharpe (0.76) with much lower volatility. This is a well-documented result
-  in the literature (DeMiguel, Garlappi & Uppal 2009) and this backtest
-  reproduces it rather than contradicting it.
+- **SPY itself was the best risk-adjusted holding.** Buy-and-hold SPY's 1.13
+  Sharpe and 37.0% CAGR beat every strategy in this universe, optimized or
+  not - a reminder that a 13-name basket re-optimized monthly still has to
+  clear a high bar to justify its complexity and turnover versus just owning
+  the index, especially in a period this strongly trending.
+- **Among the constructed portfolios, equal-weight and MaxSharpe were close
+  (0.94 vs. 0.97 Sharpe)**, with MaxSharpe edging ahead here despite by far
+  the highest turnover in the group - both come in well behind SPY. This is
+  broadly consistent with the DeMiguel, Garlappi & Uppal (2009) result that
+  naive 1/N is a tough benchmark to reliably beat out-of-sample, without
+  claiming naive 1/N is unconditionally optimal.
 - **MinVariance and RiskParity deliver on their mandate**: the lowest
-  realized volatility (9.9% and 10.4%) and shallowest drawdowns (-17.4%,
-  -20.5%) of the group, at the cost of giving up considerable upside in a
-  strong bull run.
-- **MaxSharpe's 22.6% average turnover per rebalance dwarfs the others**
-  (3.8-7.3%) - it's the classic "corner solution" pathology of
+  realized volatility (10.8% and 11.5%) and among the shallowest drawdowns
+  (-17.6%, -20.5%) of the group, at the cost of giving up considerable
+  upside in a strong bull run.
+- **MaxSharpe's 18.5% average turnover per rebalance dwarfs the others**
+  (3.6-6.2%) - it's the classic "corner solution" pathology of
   unconstrained-ish mean-variance chasing whichever few names had the best
   trailing Sharpe, even with the 25% cap and 10 bps cost included.
 - **Black-Litterman's static, hand-picked views** (long AAPL/tech, mildly
   long gold) happened to line up with what actually outperformed over this
-  window, producing the highest CAGR - but also the highest volatility and
-  deepest drawdown of any optimized strategy. This is exactly the behavior
-  you'd expect: BL only moderates mean-variance's sensitivity to *estimated*
-  returns, it doesn't protect you from *acting on a wrong view* with
-  conviction.
+  window, producing the highest CAGR and Sharpe of the optimized strategies -
+  but also the highest volatility and deepest drawdown of any optimized
+  strategy. This is exactly the behavior you'd expect: BL only moderates
+  mean-variance's sensitivity to *estimated* returns, it doesn't protect you
+  from *acting on a wrong view* with conviction.
 
 ### Charts
 

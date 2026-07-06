@@ -1,5 +1,26 @@
 import numpy as np
 
+from portfolio_optimizer.backtest import _rebalance_dates
+
+
+def test_rebalance_dates_cover_nearly_every_calendar_month(prices, tickers):
+    """Regression guard: _rebalance_dates used to intersect calendar
+    month-end (from `resample("ME")`) against the trading calendar and fall
+    back to the correct per-month last-trading-day list only `if` that
+    intersection came back empty. Calendar month-end is a weekend or holiday
+    far more often than not, so the intersection was usually a nonempty but
+    incomplete list (roughly 2 months in 3 in this panel) and the `or`
+    fallback silently never ran, quietly dropping about a third of months
+    from the rebalance schedule instead of raising anything. Every calendar
+    month actually present in the panel should produce exactly one
+    rebalance date, and that date should be a real trading day.
+    """
+    panel = prices[tickers]
+    all_dates = _rebalance_dates(panel, window_months=0)
+    n_calendar_months = panel.index.to_period("M").nunique()
+    assert len(all_dates) == n_calendar_months
+    assert all(d in panel.index for d in all_dates)
+
 
 def test_backtest_produces_a_value_series_per_strategy(backtest_result):
     expected = {"EqualWeight", "MinVariance", "MaxSharpe", "RiskParity", "BlackLitterman", "SPY"}

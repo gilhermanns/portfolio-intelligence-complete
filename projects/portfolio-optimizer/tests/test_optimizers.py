@@ -65,6 +65,37 @@ def test_risk_parity_gives_near_equal_risk_contributions(cov, sector_map):
     assert (rc.max() - rc.min()) < 1e-3
 
 
+def test_risk_parity_with_max_weight_cap_is_not_naive_equal_weight(cov, sector_map, tickers):
+    """Regression guard for the risk-parity collapse-to-equal-weight bug class.
+
+    A previous version of this solver hard-coded the log-barrier's kappa at a
+    fixed value that, once a hard sum(y)==1 budget constraint was added for
+    the capped branch, swamped the quadratic term and collapsed every solve
+    to naive 1/n weights (the constraint made kappa's absolute scale matter,
+    and 1.0 was far too large relative to typical annualized variances). The
+    fix scales kappa off Sigma's own trace; this checks that scaling still
+    holds: the capped solve should keep overweighting low-vol assets like a
+    real ERC solution would, and risk contributions -- while only
+    approximately equal once the cap binds (see the risk_parity docstring) --
+    should stay within a sane band around the 1/n target rather than
+    collapsing to a degenerate solution.
+    """
+    constraints = Constraints(max_weight=0.25)
+    w = risk_parity(cov, sector_map, constraints)
+    equal = 1.0 / len(tickers)
+    assert not np.allclose(w.sort_index().values, equal, atol=1e-3)
+    assert w["TLT"] > equal
+    assert w["GLD"] > equal
+
+    rc = risk_contributions(w, cov)
+    target = 1.0 / len(tickers)
+    # a genuine collapse (e.g. kappa dominating the quadratic term again)
+    # would push some contributions far outside this band; a merely
+    # cap-constrained approximate ERC solution should not
+    assert (rc > target * 0.5).all()
+    assert (rc < target * 2.0).all()
+
+
 def test_risk_parity_weights_differ_from_equal_weight(cov, tickers):
     w = risk_parity(cov, None)
     equal = 1.0 / len(tickers)
