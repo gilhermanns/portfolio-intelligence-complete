@@ -101,6 +101,31 @@ def get_live_price(ticker: str) -> float | None:
     return None
 
 
+def get_company_info(ticker: str) -> dict:
+    """Fetch a short company profile (name, sector, industry, blurb) for the ticker."""
+    ticker = (ticker or "").strip().upper()
+    info: dict = {"name": "N/A", "sector": "N/A", "industry": "N/A", "summary": "No company information available."}
+
+    if not ticker or ticker in {"N/A", "--"}:
+        return info
+
+    try:
+        raw_info = yf.Ticker(ticker).info
+        info["name"] = raw_info.get("longName") or raw_info.get("shortName") or ticker
+        info["sector"] = raw_info.get("sector", "N/A")
+        info["industry"] = raw_info.get("industry", "N/A")
+
+        summary = raw_info.get("longBusinessSummary", "")
+        if summary:
+            # Trim to the first couple of sentences so the email stays skimmable.
+            sentences = summary.split(". ")
+            info["summary"] = ". ".join(sentences[:2]).rstrip(".") + "."
+    except Exception as exc:
+        print(f"Warning: could not fetch company info for {ticker}: {exc}")
+
+    return info
+
+
 # ---------------------------------------------------------------------------
 # Visualization
 # ---------------------------------------------------------------------------
@@ -168,7 +193,9 @@ def build_summary_chart(pelosi_df: pd.DataFrame, output_path: str = CHART_OUTPUT
 # ---------------------------------------------------------------------------
 # Email alerting
 # ---------------------------------------------------------------------------
-def format_alert_email(transaction: pd.Series, live_price: float | None) -> str:
+def format_alert_email(
+    transaction: pd.Series, live_price: float | None, company_info: dict
+) -> str:
     """Render the exact fixed-width alert template for the newest transaction."""
     ticker = str(transaction.get("ticker", "N/A")).upper()
     action = str(transaction.get("type", "N/A")).upper()
@@ -192,6 +219,12 @@ Disclosed Amount: {amount}
 ------------------------------------------------------------
 CURRENT MARKET CONTEXT:
 Live Price:       ${price_str}
+------------------------------------------------------------
+COMPANY OVERVIEW:
+Company:          {company_info['name']}
+Sector:           {company_info['sector']}
+Industry:         {company_info['industry']}
+About:            {company_info['summary']}
 
 ACTION SUGGESTION:
 Review buying or executing an order for {ticker} at or near
@@ -293,7 +326,8 @@ def main() -> int:
         return 0
 
     live_price = get_live_price(ticker)
-    email_body = format_alert_email(newest_transaction, live_price)
+    company_info = get_company_info(ticker)
+    email_body = format_alert_email(newest_transaction, live_price, company_info)
     print(email_body)
 
     send_email_alert(
