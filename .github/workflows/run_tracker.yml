@@ -1,0 +1,55 @@
+name: Nancy Pelosi Stock Tracker
+
+# ---------------------------------------------------------------------------
+# Trigger: run automatically once a day, or on-demand from the Actions tab.
+# ---------------------------------------------------------------------------
+on:
+  schedule:
+    - cron: "0 13 * * *"   # 13:00 UTC daily (after House Stock Watcher's typical refresh)
+  workflow_dispatch: {}     # allows manual "Run workflow" trigger
+
+permissions:
+  contents: write           # required so the runner can commit the updated chart back
+
+jobs:
+  track-pelosi-trades:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests pandas yfinance matplotlib
+
+      - name: Run tracker script
+        env:
+          SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
+          RECEIVER_EMAIL: ${{ secrets.RECEIVER_EMAIL }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+        run: python tracker.py
+
+      - name: Commit and push updated chart
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Stage the generated chart and the new-trade marker file, if changed.
+          git add pelosi_portfolio.png .last_seen_trade.txt
+
+          # Only commit/push when there is something new to record.
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: update Pelosi portfolio chart [automated]"
+            git push origin HEAD:${{ github.ref_name }}
+          else
+            echo "No changes to commit."
+          fi
