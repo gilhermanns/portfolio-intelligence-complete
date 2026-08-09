@@ -45,3 +45,7 @@ backtester, an order book microstructure simulator, a risk dashboard, an
 options/volatility lab, a sentiment-signals pipeline, and a credit risk
 model. Each one is self-contained with its own tests, README, and results;
 see [`projects/README.md`](projects/README.md) for the full index.
+
+---
+
+*Entwickelt mit Unterstützung von Claude Code (Anthropic).*
