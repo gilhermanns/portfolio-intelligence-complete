@@ -269,7 +269,7 @@ src/portfolio_optimizer/
   plotting.py            SVG chart builders
   cli.py                 python -m portfolio_optimizer.cli entry point
   resources/prices_cache.csv   bundled real historical price snapshot
-tests/                  pytest suite (32 tests)
+tests/                  pytest suite (34 tests)
 config.yaml              default universe/constraints/backtest configuration
 reports/                 generated charts and CSV metrics from the run above
 ```

@@ -9,6 +9,7 @@ description = "Event-driven limit order book simulator with liquidity-provider, 
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
+authors = [{ name = "Gil Hermanns" }]
 dependencies = [
     "sortedcontainers>=2.4",
     "numpy>=1.26",
