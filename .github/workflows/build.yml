@@ -19,6 +19,8 @@ jobs:
           cache: npm
           cache-dependency-path: client/package-lock.json
       - run: npm ci --no-audit --no-fund
+        working-directory: server
+      - run: npm ci --no-audit --no-fund
       - run: npm run build
 
   build-server:
