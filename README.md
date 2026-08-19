@@ -1,51 +1,73 @@
 # Portfolio Intelligence Platform
 
-Institutional-grade investment dashboard with live P&L, risk scoring, and Monte Carlo simulation.
+[![Client and Server Build](https://github.com/gilhermanns/portfolio-intelligence-complete/actions/workflows/build.yml/badge.svg)](https://github.com/gilhermanns/portfolio-intelligence-complete/actions/workflows/build.yml)
 
-**Stack:** React 19 · tRPC 11 · Express 4 · TypeScript · Tailwind CSS 3
+A **portfolio-research dashboard prototype** that brings allocation, risk, scenario analysis, market intelligence and watchlists into one review workflow. It is designed to demonstrate application architecture and finance-oriented decision support — not to provide live investment advice or production portfolio valuation.
 
-## Features
-- Live portfolio P&L with mock market prices
-- Asset allocation & sector charts
-- Monte Carlo simulation (GBM + Cholesky + VaR/CVaR)
-- Research assistant for scenario and portfolio-impact analysis
-- Risk scoring with concentration warnings
-- Market intelligence across 5 asset classes
-- Watchlists, CSV export, search, filter, sort
+> **Data scope:** The current application uses mock prices and an in-memory data store. “P&L”, risk and scenario views are therefore reproducible product demonstrations, not live client reporting.
 
-## Quick Start
+## What an analyst can review
+
+| Workflow | Current capability | Review question |
+|---|---|---|
+| Portfolio overview | Allocation, sector breakdown and mock P&L views | Where are the largest exposures? |
+| Risk analysis | Concentration warnings, risk scoring and Monte Carlo / VaR-CVaR calculations | Which assumptions and concentrations drive risk? |
+| Market intelligence | Cross-asset market context and research-assistant prompts | What recent market information should frame the discussion? |
+| Watchlists & exports | Watchlists, search, filters, sorting and CSV export | Can the analysis be reviewed and carried into another workflow? |
+
+## Architecture
+
+```text
+React + Vite client
+        │ typed tRPC calls
+        ▼
+Express + tRPC API
+        │
+        ├── portfolio, holdings and risk calculations
+        ├── scenario / Monte Carlo analysis
+        └── in-memory demonstration data
+```
+
+The separation between frontend, typed API and calculation modules keeps the project extensible while making the current prototype boundary explicit.
+
+## Run locally
+
+Install dependencies in each package, then start the API and client in separate terminals:
 
 ```bash
-cd server && npm install && npm run dev   # Backend :3001
-cd client && npm install && npm run dev   # Frontend :5173
+# Terminal 1
+cd server
+npm ci
+npm run dev
+
+# Terminal 2
+cd client
+npm ci
+npm run dev
 ```
 
-Open `http://localhost:5173`.
+Open the Vite URL displayed in the second terminal. The API default is port `3001`; the Vite development server normally starts on port `5173`.
 
-## Project Structure
+## Build and validation
 
-```
-client/    React + Vite + Tailwind frontend
-server/    Express + tRPC API, in-memory data store
-projects/  Seven standalone quant finance projects (see below)
-```
-
-## Testing
+The repository has a GitHub Actions workflow that performs the same production builds on pushes and pull requests. The client imports the API router type, so the server dependencies are installed before the client TypeScript build.
 
 ```bash
-cd server && npx tsc --noEmit   # typecheck the API
-cd client && npx tsc --noEmit   # typecheck the frontend
+cd server && npm ci && npm run build
+cd ../client && npm ci && npm run build
 ```
 
-## Quant Finance Projects
+## Related quantitative projects
 
-This repo also hosts seven independent, fully-tested Python projects under
-[`projects/`](projects/) — a portfolio optimizer, a walk-forward strategy
-backtester, an order book microstructure simulator, a risk dashboard, an
-options/volatility lab, a sentiment-signals pipeline, and a credit risk
-model. Each one is self-contained with its own tests, README, and results;
-see [`projects/README.md`](projects/README.md) for the full index.
+The `projects/` directory contains seven independent Python projects: portfolio optimization, walk-forward backtesting, order-book microstructure simulation, a risk dashboard, an options / volatility lab, sentiment research and a credit-risk model. Each project has its own README, tests and versioned results. See [`projects/README.md`](projects/README.md) for the index.
+
+## Limitations
+
+- Data is currently mock and in-memory; there is no persistence layer or live market-data integration.
+- Risk and scenario outputs depend on model inputs and are for analytical discussion, not recommendations.
+- A later production version would require authenticated users, persistent holdings, documented data licensing and independent controls around market-data quality.
 
 ---
 
 *Entwickelt mit Unterstützung von Claude Code (Anthropic).*
+*Research and educational prototype; not investment advice.*
