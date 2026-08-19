@@ -13,7 +13,10 @@
     "jsx": "react-jsx",
     "strict": true,
     "baseUrl": ".",
-    "paths": { "@/*": ["./src/*"] }
+    "paths": {
+      "@/*": ["./src/*"],
+      "@trpc/server": ["./node_modules/@trpc/server"]
+    }
   },
   "include": ["src"]
 }
